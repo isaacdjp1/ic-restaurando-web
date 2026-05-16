@@ -33,7 +33,7 @@ const flyers = [
   },
 
   {
-    title: "Escuela de lideres",
+    title: "Formación de liderazgo",
     day: "Martes",
     time: "7:00 PM - 8:30 PM",
 
