@@ -6,7 +6,7 @@ import { Autoplay } from "swiper/modules"
 import "swiper/css"
 
 import ViernesImg from "../assets/images/Viernes.webp"
-import SabadoImg from "../assets/images/Jovenes.webp"
+import SabadoImg from "../assets/images/Eventodamas.webp"
 import DomingoImg from "../assets/images/Domingo.webp"
 
 const flyers = [
@@ -22,9 +22,9 @@ const flyers = [
   },
 
   {
-    title: "Servicio Juvenil GPC",
+    title: "Mujeres Indetenibles",
     day: "Sábado",
-    time: "5:30 PM - 7:00 PM",
+    time: "4:30 PM - 6:30 PM",
 
     description:
       "Un espacio diseñado para que los jóvenes crezcan espiritualmente, hagan amistades y experimenten a Dios de una manera auténtica.",
