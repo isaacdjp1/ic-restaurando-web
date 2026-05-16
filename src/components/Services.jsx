@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 const services = [
   {
     day: "Martes",
-    title: "Escuela de Formación",
+    title: "Formación de liderazgo",
     time: "7:00 PM - 8:30 PM",
     extra: "Maestro: Lucas Contreras",
   },
@@ -33,14 +33,14 @@ const services = [
     day: "Domingo",
     title: "Clases de Liderazgo",
     time: "8:00 AM - 8:55 AM",
-    extra: "Formación de líderes",
+    extra: "Clases para formar líderes",
   },
 
   {
     day: "Domingo",
     title: "Escuela Dominical",
     time: "9:00 AM - 12:00 PM",
-    extra: "Servicio principal",
+    extra: "Nuestra Escuela Dominical",
   },
 ]
 
