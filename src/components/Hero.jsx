@@ -9,6 +9,7 @@ import heroImage5 from "../assets/images/gallery6.webp"
 
 import logoImg from "../assets/images/logo.webp"
 
+
 export default function Hero() {
 
   const images = [
