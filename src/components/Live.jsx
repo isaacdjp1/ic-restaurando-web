@@ -40,7 +40,7 @@ export default function Live() {
 
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/vDCN4GwkTN0"
+                src="https://www.youtube.com/embed/Wdlts_up0z0"
                 title="YouTube Live"
                 allowFullScreen
               ></iframe>

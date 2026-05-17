@@ -1,13 +1,13 @@
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 
-import heroImage1 from "../assets/images/church.jpg"
-import heroImage2 from "../assets/images/gallery5.jpg"
-import heroImage3 from "../assets/images/gallery2.jpg"
-import heroImage4 from "../assets/images/gallery4.jpg"
-import heroImage5 from "../assets/images/gallery6.jpg"
+import heroImage1 from "../assets/images/church.webp"
+import heroImage2 from "../assets/images/gallery5.webp"
+import heroImage3 from "../assets/images/gallery2.webp"
+import heroImage4 from "../assets/images/gallery4.webp"
+import heroImage5 from "../assets/images/gallery6.webp"
 
-import logoImg from "../assets/images/logo.png"
+import logoImg from "../assets/images/logo.webp"
 
 export default function Hero() {
 
@@ -20,12 +20,21 @@ export default function Hero() {
   ]
 
   const [currentImage, setCurrentImage] = useState(0)
+  const [fade, setFade] = useState(true)
 
   useEffect(() => {
 
     const interval = setInterval(() => {
 
-      setCurrentImage((prev) => (prev + 1) % images.length)
+      setFade(false)
+
+      setTimeout(() => {
+
+        setCurrentImage((prev) => (prev + 1) % images.length)
+
+        setFade(true)
+
+      }, 1000)
 
     }, 9000)
 
@@ -42,20 +51,19 @@ export default function Hero() {
 
       {/* Background Slideshow */}
 
-      <AnimatePresence mode="wait">
-
-        <motion.img
-          key={currentImage}
-          src={images[currentImage]}
-          alt="Iglesia"
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1.15 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 2 }}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-
-      </AnimatePresence>
+      <motion.img
+        src={images[currentImage]}
+        alt="Iglesia"
+        animate={{
+          opacity: fade ? 1 : 0,
+          scale: 1.15,
+        }}
+        transition={{
+          opacity: { duration: 1.5 },
+          scale: { duration: 10 },
+        }}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
 
       {/* Overlay */}
 
@@ -80,7 +88,7 @@ export default function Hero() {
 
         {/* Text */}
 
-        <h1 className="text-2xl md:text-4xl font-black text-white leading-tight mb-8 max-w-5xl mx-auto tracking-tight">
+        <h1 className="text-2xl md:text-4xl font-bold text-white leading-tight mb-8 max-w-3xl mx-auto tracking-tight">
 
           Más que una iglesia,
           una familia transformada por Dios.
@@ -99,7 +107,6 @@ export default function Hero() {
             Ver Transmisión
 
           </a>
-
 
           <a
             href="#nosotros"

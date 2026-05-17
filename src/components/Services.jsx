@@ -71,11 +71,14 @@ export default function Services() {
 
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{
+                duration: 0.7,
+                delay: index * 0.12,
+              }}
               viewport={{ once: true }}
-              className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:scale-105 transition duration-300 backdrop-blur-lg"
+              className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:scale-105 hover:-translate-y-2 hover:border-yellow-500/30 hover:shadow-yellow-500/10 hover:shadow-2xl transition-all duration-500 backdrop-blur-lg"
             >
 
               <p className="text-yellow-400 uppercase tracking-[3px] mb-3">
