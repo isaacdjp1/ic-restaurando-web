@@ -1,13 +1,13 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useEffect, useState } from "react"
 
-import heroImage1 from "../assets/images/church.webp"
-import heroImage2 from "../assets/images/gallery5.webp"
-import heroImage3 from "../assets/images/gallery2.webp"
-import heroImage4 from "../assets/images/gallery4.webp"
-import heroImage5 from "../assets/images/gallery6.webp"
+import heroImage1 from "../assets/images/church.jpg"
+import heroImage2 from "../assets/images/gallery5.jpg"
+import heroImage3 from "../assets/images/gallery2.jpg"
+import heroImage4 from "../assets/images/gallery4.jpg"
+import heroImage5 from "../assets/images/gallery6.jpg"
 
-import logoImg from "../assets/images/logo.webp"
+import logoImg from "../assets/images/logo.jpg"
 
 export default function Hero() {
 
