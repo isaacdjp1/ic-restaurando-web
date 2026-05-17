@@ -1,68 +1,65 @@
 import logoImg from "../assets/images/logo.png"
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa"
+import Location from "./Location"
 
 export default function Footer() {
   return (
     <footer
-      id="footer"
+      id="nosotros"
       className="bg-gradient-to-b from-black to-zinc-950 text-white pt-20 pb-10 px-6 border-t border-white/10"
     >
 
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10 items-start">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-16 items-start">
 
-        {/* Logo */}
+        {/* Logo + Visión */}
 
         <div>
 
           <img
             src={logoImg}
             alt="IC Restaurando el Altar Familiar"
-            className="w-72 mb-8"
+            className="w-72 mb-8 hover:scale-105 transition-all duration-500"
           />
 
-          <p className="text-gray-300 leading-relaxed text-lg">
+          <div className="space-y-8">
 
-           Somos una iglesia apasionada por la presencia de Dios, dedicada a restaurar vidas, fortalecer familias y levantar generaciones con propósito a través de Su Palabra.
+            <div>
 
-          </p>
+              <h3 className="text-2xl font-bold mb-3 text-white">
+                Nuestra Visión
+              </h3>
+
+              <p className="text-gray-300 leading-relaxed text-lg">
+
+                Restaurar vidas, fortalecer familias y levantar generaciones con propósito a través del poder transformador de Jesucristo y Su Palabra.
+
+              </p>
+
+            </div>
+
+            <div>
+
+              <h3 className="text-2xl font-bold mb-3 text-white">
+                Nuestra Misión
+              </h3>
+
+              <p className="text-gray-300 leading-relaxed text-lg">
+
+                Llevar el mensaje de salvación, esperanza y restauración a cada persona, formando discípulos comprometidos con Dios y Su Reino.
+
+              </p>
+
+            </div>
+
+          </div>
 
         </div>
 
-        {/* Horarios */}
+        {/* Ubicación */}
 
         <div>
 
-          <h3 className="text-2xl font-bold mb-6">
-            Horarios
-          </h3>
-
-          <div className="space-y-3 text-gray-300">
-
-            <p>
-              Martes • Escuela de Formación • 7:00 PM
-            </p>
-
-            <p>
-              Miércoles y Sábados • Ayuno Congregacional • 9:30 AM
-            </p>
-
-            <p>
-              Viernes • Servicio Congregacional • 7:00 PM
-            </p>
-
-            <p>
-              Sábado • Servicio Juvenil GPC • 5:30 PM
-            </p>
-
-            <p>
-              Domingo • Escuela Dominical • 9:00 AM
-            </p>
-
-            <p className="text-yellow-400 pt-2">
-              Barranquilla, Colombia
-            </p>
-
-          </div>
+          <Location />
 
         </div>
 
@@ -74,46 +71,46 @@ export default function Footer() {
             Síguenos
           </h3>
 
-          <div className="flex flex-col gap-5 text-lg">
+          <div className="flex flex-col gap-6 text-lg">
 
-        <a
-        href="https://facebook.com/TU_PAGINA"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-3 text-gray-300 hover:text-yellow-400 transition duration-300"
-        >
+            <a
+              href="https://facebook.com/restaurandoeaf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-gray-300 hover:text-yellow-400 hover:scale-105 hover:translate-x-1 transition-all duration-300"
+            >
 
-    <FaFacebookF />
+              <FaFacebookF />
 
-    Facebook
+              Facebook
 
-  </a>
+            </a>
 
-        <a
-        href="https://instagram.com/restaurandoeaf"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-3 text-gray-300 hover:text-yellow-400 transition duration-300"
-        >
+            <a
+              href="https://instagram.com/restaurandoeaf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-gray-300 hover:text-yellow-400 hover:scale-105 hover:translate-x-1 transition-all duration-300"
+            >
 
-    <FaInstagram />
+              <FaInstagram />
 
-    Instagram
+              Instagram
 
-  </a>
+            </a>
 
-        <a
-        href="https://youtube.com/@restaurandoeaf"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-3 text-gray-300 hover:text-yellow-400 transition duration-300"
-        >
+            <a
+              href="https://youtube.com/@restaurandoeaf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-gray-300 hover:text-yellow-400 hover:scale-105 hover:translate-x-1 transition-all duration-300"
+            >
 
-    <FaYoutube />
+              <FaYoutube />
 
-    YouTube
+              YouTube
 
-  </a>
+            </a>
 
           </div>
 
@@ -125,7 +122,7 @@ export default function Footer() {
 
       <div className="border-t border-white/10 mt-16 pt-8 text-center">
 
-        <p className="text-gray-500 text-sm">
+        <p className="text-gray-500 text-sm hover:text-gray-300 transition duration-300">
 
           © 2026 IC Restaurando el Altar Familiar.
           Todos los derechos reservados.
