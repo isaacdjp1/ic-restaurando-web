@@ -38,8 +38,7 @@ const flyers = [
     time: "5:30 PM - 7:30 PM",
 
     description:
-      "Un tiempo especial para compartir el amor de Dios, llevar esperanza y anunciar el mensaje de Jesús. Juntos estaremos impactando vidas, orando por las personas y demostrando que no es religión, es una verdadera relación con Dios. ❤️🔥
-",
+  "Un tiempo especial para compartir el amor de Dios, llevar esperanza y anunciar el mensaje de Jesús. Juntos estaremos impactando vidas, orando por las personas y demostrando que no es religión, es una verdadera relación con Dios. ❤️🔥",
 
     image: DomingoImg,
   },
