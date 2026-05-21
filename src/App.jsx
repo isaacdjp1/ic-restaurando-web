@@ -6,10 +6,13 @@ import Login from "./pages/Login"
 import AdminHome from "./pages/AdminHome"
 import AdminPeticiones from "./pages/AdminPeticiones"
 import AdminFlyers from "./pages/AdminFlyers"
-import ProtectedRoute from "./components/ProtectedRoute"
 import AdminLivestream from "./pages/AdminLivestream"
-import Gallery from "./components/Gallery"
 import AdminGallery from "./pages/AdminGallery"
+
+import ProtectedRoute from "./components/ProtectedRoute"
+import AdminLayout from "./components/AdminLayout"
+
+import Gallery from "./components/Gallery"
 
 export default function App() {
 
@@ -27,23 +30,18 @@ export default function App() {
         element={<Login />}
       />
 
+      {/* ADMIN */}
+
       <Route
         path="/admin"
         element={
           <ProtectedRoute>
 
-            <AdminHome />
+            <AdminLayout>
 
-          </ProtectedRoute>
-        }
-      />
+              <AdminHome />
 
-      <Route
-        path="/admin/peticiones"
-        element={
-          <ProtectedRoute>
-
-            <AdminPeticiones />
+            </AdminLayout>
 
           </ProtectedRoute>
         }
@@ -54,7 +52,26 @@ export default function App() {
         element={
           <ProtectedRoute>
 
-            <AdminFlyers />
+            <AdminLayout>
+
+              <AdminFlyers />
+
+            </AdminLayout>
+
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/admin/galeria"
+        element={
+          <ProtectedRoute>
+
+            <AdminLayout>
+
+              <AdminGallery />
+
+            </AdminLayout>
 
           </ProtectedRoute>
         }
@@ -65,19 +82,37 @@ export default function App() {
         element={
           <ProtectedRoute>
 
-            <AdminLivestream />
+            <AdminLayout>
+
+              <AdminLivestream />
+
+            </AdminLayout>
 
           </ProtectedRoute>
         }
       />
 
-      <Route 
-      path="/galeria" element=
-      {<Gallery />} />
+      <Route
+        path="/admin/peticiones"
+        element={
+          <ProtectedRoute>
 
-      <Route 
-      path="/admin/galeria" element=
-      {<AdminGallery />} />
+            <AdminLayout>
+
+              <AdminPeticiones />
+
+            </AdminLayout>
+
+          </ProtectedRoute>
+        }
+      />
+
+      {/* PUBLIC */}
+
+      <Route
+        path="/galeria"
+        element={<Gallery />}
+      />
 
     </Routes>
 

@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom"
-import { supabase } from "../lib/supabase"
 import { motion } from "framer-motion"
 import PageWrapper from "../components/PageWrapper"
 
@@ -43,13 +42,7 @@ export default function AdminHome() {
 
   ]
 
-  async function handleLogout() {
 
-    await supabase.auth.signOut()
-
-    navigate("/login")
-
-  }
 
   return (
 
@@ -98,67 +91,6 @@ export default function AdminHome() {
 
         </div>
 
-        {/* TOP BAR */}
-
-        <motion.div
-
-          initial={{
-            opacity: 0,
-            y: -30
-          }}
-
-          animate={{
-            opacity: 1,
-            y: 0
-          }}
-
-          transition={{
-            duration: 0.6
-          }}
-
-          className="relative z-20 border-b border-white/10 backdrop-blur-xl"
-        >
-
-          <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
-
-            <div>
-
-              <p className="uppercase tracking-[5px] text-yellow-400 text-sm mb-2">
-                CMS ADMIN
-              </p>
-
-              <h1 className="text-2xl font-black">
-                IC Restaurando el Altar Familiar
-              </h1>
-
-            </div>
-
-            <div className="flex gap-4">
-
-              <button
-                onClick={handleLogout}
-                className="
-                  bg-red-500
-                  px-5 py-3
-                  rounded-2xl
-                  font-semibold
-                  transition-all duration-300
-                  hover:bg-red-400
-                  hover:scale-105
-                  hover:shadow-xl
-                  hover:shadow-red-500/30
-                "
-              >
-
-                Cerrar Sesión
-
-              </button>
-
-            </div>
-
-          </div>
-
-        </motion.div>
 
         {/* HERO */}
 
