@@ -23,6 +23,7 @@ export default function AdminFlyers() {
   const [imageFile, setImageFile] = useState(null)
   const [preview, setPreview] = useState("")
   const [uploading, setUploading] = useState(false)
+  const [successMessage, setSuccessMessage] = useState("")
 
   useEffect(() => {
 
@@ -253,14 +254,31 @@ export default function AdminFlyers() {
 
     }
 
-    resetForm()
-
-    setShowForm(false)
-
     fetchFlyers()
 
-    setUploading(false)
+setUploading(false)
 
+setSuccessMessage(
+
+  editingFlyer
+    ? "Flyer actualizado correctamente"
+    : "Flyer creado correctamente"
+
+)
+
+setTimeout(() => {
+
+  setSuccessMessage("")
+
+}, 1800)
+
+setTimeout(() => {
+
+  resetForm()
+
+  setShowForm(false)
+
+}, 2200)
   }
 
   return (
@@ -268,6 +286,46 @@ export default function AdminFlyers() {
     <PageWrapper>
 
       <section className="bg-black min-h-screen text-white">
+
+        {successMessage && (
+
+       <motion.div
+
+      initial={{
+      opacity: 0,
+      y: -30
+      }}
+
+      animate={{
+      opacity: 1,
+      y: 0
+      }}
+
+      exit={{
+      opacity: 0
+      }}
+
+      className="
+      fixed
+      top-6
+      left-1/2
+      -translate-x-1/2
+      z-[999]
+      bg-green-500
+      text-black
+      px-8
+      py-5
+      rounded-2xl
+      font-bold
+      shadow-2xl
+    "
+  >
+
+    {successMessage}
+
+  </motion.div>
+
+)}
 
         {/* HEADER */}
 
