@@ -1,23 +1,86 @@
-import Navbar from "./components/Navbar"
-import Hero from "./components/Hero"
-import Services from "./components/Services"
-import Flyers from "./components/Flyers"
-import Live from "./components/Live"
-import PrayerForm from "./components/PrayerForm"
-import Footer from "./components/Footer"
+import { Routes, Route } from "react-router-dom"
+
+import Home from "./pages/Home"
+import Login from "./pages/Login"
+
+import AdminHome from "./pages/AdminHome"
+import AdminPeticiones from "./pages/AdminPeticiones"
+import AdminFlyers from "./pages/AdminFlyers"
+import ProtectedRoute from "./components/ProtectedRoute"
+import AdminLivestream from "./pages/AdminLivestream"
 import Gallery from "./components/Gallery"
+import AdminGallery from "./pages/AdminGallery"
 
 export default function App() {
+
   return (
-    <>
-      <Navbar />
-      <Hero />
-      <Services />
-      <Flyers />
-      <Live />
-      <Gallery />
-      <PrayerForm />
-      <Footer />
-    </>
+
+    <Routes>
+
+      <Route
+        path="/"
+        element={<Home />}
+      />
+
+      <Route
+        path="/login"
+        element={<Login />}
+      />
+
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+
+            <AdminHome />
+
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/admin/peticiones"
+        element={
+          <ProtectedRoute>
+
+            <AdminPeticiones />
+
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/admin/flyers"
+        element={
+          <ProtectedRoute>
+
+            <AdminFlyers />
+
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/admin/livestream"
+        element={
+          <ProtectedRoute>
+
+            <AdminLivestream />
+
+          </ProtectedRoute>
+        }
+      />
+
+      <Route 
+      path="/galeria" element=
+      {<Gallery />} />
+
+      <Route 
+      path="/admin/galeria" element=
+      {<AdminGallery />} />
+
+    </Routes>
+
   )
+
 }

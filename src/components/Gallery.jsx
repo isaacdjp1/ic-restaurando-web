@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react"
+import { supabase } from "../lib/supabase"
+
 import gallery1 from "../assets/images/gallery1.webp"
 import gallery2 from "../assets/images/gallery2.webp"
 import gallery3 from "../assets/images/gallery3.webp"
@@ -11,8 +14,7 @@ import gallery10 from "../assets/images/gallery10.webp"
 import gallery11 from "../assets/images/gallery11.webp"
 import gallery12 from "../assets/images/gallery12.webp"
 
-
-const images = [
+const localImages = [
   gallery1,
   gallery2,
   gallery3,
@@ -28,7 +30,36 @@ const images = [
 ]
 
 export default function Gallery() {
+
+  const [cmsImages, setCmsImages] = useState([])
+
+  useEffect(() => {
+
+    fetchGallery()
+
+  }, [])
+
+  async function fetchGallery() {
+
+    const { data, error } = await supabase
+      .from("gallery")
+      .select("*")
+      .order("position", { ascending: true })
+
+    if (error) {
+
+      console.log(error)
+
+    } else {
+
+      setCmsImages(data)
+
+    }
+
+  }
+
   return (
+
     <section
       className="bg-black text-white py-24 px-6"
     >
@@ -64,26 +95,38 @@ export default function Gallery() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          {images.map((image, index) => (
+          {/* SISTEMA SLOT CMS */}
 
-            <div
-              key={index}
-              className="overflow-hidden rounded-[30px] group relative"
-            >
+          {localImages.map((localImage, index) => {
 
-              <img
-                src={image}
-                alt="Galería Iglesia"
-                className="w-full h-[350px] object-cover transition duration-700 group-hover:scale-110"
-              />
+            const cmsImage = cmsImages.find(
+              (img) => img.position === index + 1
+            )
 
-              {/* Overlay */}
+            const finalImage = cmsImage
+              ? cmsImage.image_url
+              : localImage
 
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-500"></div>
+            return (
 
-            </div>
+              <div
+                key={index}
+                className="overflow-hidden rounded-[30px] group relative"
+              >
 
-          ))}
+                <img
+                  src={finalImage}
+                  alt="Galería Iglesia"
+                  className="w-full h-[350px] object-cover transition duration-700 group-hover:scale-110"
+                />
+
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-500"></div>
+
+              </div>
+
+            )
+
+          })}
 
         </div>
 
@@ -91,4 +134,5 @@ export default function Gallery() {
 
     </section>
   )
+
 }

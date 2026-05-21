@@ -1,5 +1,6 @@
 import { useState } from "react"
 import emailjs from "@emailjs/browser"
+import { supabase } from "../lib/supabase"
 
 export default function PrayerForm() {
 
@@ -13,6 +14,8 @@ export default function PrayerForm() {
   const [errors, setErrors] = useState({})
 
   const [success, setSuccess] = useState(false)
+
+  const [loading, setLoading] = useState(false)
 
   const regex = {
     nombre: /^[A-Za-zÀ-ÿ\s]{3,40}$/,
@@ -33,8 +36,6 @@ export default function PrayerForm() {
 
     let newErrors = {}
 
-    // Nombre
-
     if (!regex.nombre.test(formData.nombre)) {
 
       newErrors.nombre =
@@ -42,16 +43,12 @@ export default function PrayerForm() {
 
     }
 
-    // Correo
-
     if (!regex.correo.test(formData.correo)) {
 
       newErrors.correo =
         "Ingresa un correo válido."
 
     }
-
-    // Teléfono
 
     if (
       formData.telefono &&
@@ -62,8 +59,6 @@ export default function PrayerForm() {
         "Ingresa un teléfono válido."
 
     }
-
-    // Mensaje
 
     if (formData.mensaje.trim().length < 15) {
 
@@ -89,42 +84,76 @@ export default function PrayerForm() {
 
     e.preventDefault()
 
-    if (validate()) {
+    if (!validate()) return
 
-      try {
+    setLoading(true)
 
-        await emailjs.send(
-          "service_g0m7var",
-          "template_t67hst9",
+    try {
+
+      // GUARDAR EN SUPABASE
+
+      const { data, error } = await supabase
+        .from("peticiones")
+        .insert([
           {
             nombre: formData.nombre,
-            correo: formData.correo,
+            email: formData.correo,
             telefono: formData.telefono,
             mensaje: formData.mensaje,
+            estado: "Pendiente",
           },
-          "2ybHwBiiCoPmaIxNe"
-        )
+        ])
+        .select()
 
-        setSuccess(true)
+      console.log("SUPABASE DATA:", data)
+      console.log("SUPABASE ERROR:", error)
 
-        setFormData({
-          nombre: "",
-          correo: "",
-          telefono: "",
-          mensaje: "",
-        })
-
-        setErrors({})
-
-      } catch (error) {
+      if (error) {
 
         console.log(error)
 
-        alert("Hubo un error al enviar la petición.")
+        alert("Error guardando petición.")
+
+        setLoading(false)
+
+        return
 
       }
 
+      // ENVIAR EMAIL
+
+      await emailjs.send(
+        "service_g0m7var",
+        "template_t67hst9",
+        {
+          nombre: formData.nombre,
+          correo: formData.correo,
+          telefono: formData.telefono,
+          mensaje: formData.mensaje,
+        },
+        "2ybHwBiiCoPmaIxNe"
+      )
+
+      setSuccess(true)
+
+      setFormData({
+        nombre: "",
+        correo: "",
+        telefono: "",
+        mensaje: "",
+      })
+
+      setErrors({})
+
+    } catch (error) {
+
+      console.log(error)
+
+      alert("Hubo un error al enviar la petición.")
+
     }
+
+    setLoading(false)
 
   }
 
@@ -158,8 +187,6 @@ export default function PrayerForm() {
           className="grid md:grid-cols-2 gap-6"
         >
 
-          {/* Nombre */}
-
           <div>
 
             <input
@@ -178,8 +205,6 @@ export default function PrayerForm() {
             )}
 
           </div>
-
-          {/* Correo */}
 
           <div>
 
@@ -200,8 +225,6 @@ export default function PrayerForm() {
 
           </div>
 
-          {/* Teléfono */}
-
           <div className="md:col-span-2">
 
             <input
@@ -220,8 +243,6 @@ export default function PrayerForm() {
             )}
 
           </div>
-
-          {/* Mensaje */}
 
           <div className="md:col-span-2">
 
@@ -253,54 +274,43 @@ export default function PrayerForm() {
 
           </div>
 
-          {/* Botón */}
-
           <button
             type="submit"
+            disabled={loading}
             className="bg-black text-white py-4 rounded-2xl hover:bg-yellow-500 hover:text-black transition md:col-span-2"
           >
 
-            Enviar Petición
-
-            {/* Modal Success */}
-
-{success && (
-
-  <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 px-6">
-
-    <div className="bg-white rounded-3xl p-10 max-w-md w-full text-center shadow-2xl">
-
-      <h3 className="text-3xl font-black mb-4 text-black">
-        ¡Petición Enviada!
-      </h3>
-
-      <p className="text-gray-600 mb-8 leading-relaxed">
-        Nuestro Grupo de Oración estará orando por ti y tu familia 🙏
-      </p>
-
-      <button
-        onClick={() => setSuccess(false)}
-        className="bg-yellow-500 hover:bg-yellow-400 text-black px-8 py-4 rounded-2xl font-bold transition w-full"
-      >
-
-        OK
-
-      </button>
-
-    </div>
-
-  </div>
-
-)}
+            {loading ? "Enviando..." : "Enviar Petición"}
 
           </button>
 
-          {/* Success */}
-
           {success && (
-            <p className="text-green-500 text-center md:col-span-2 mt-2">
-              Petición enviada correctamente 🙏
-            </p>
+
+            <div className="md:col-span-2 flex justify-center">
+
+              <div className="bg-green-100 border border-green-300 rounded-3xl p-8 w-full text-center shadow-lg">
+
+                <h3 className="text-3xl font-black mb-4 text-black">
+                  ¡Petición Enviada!
+                </h3>
+
+                <p className="text-gray-600 mb-8 leading-relaxed">
+                  Nuestro Grupo de Oración estará orando por ti y tu familia.
+                </p>
+
+                <button
+                  onClick={() => setSuccess(false)}
+                  className="bg-yellow-500 hover:bg-yellow-400 text-black px-8 py-4 rounded-2xl font-bold transition w-full"
+                >
+
+                  OK
+
+                </button>
+
+              </div>
+
+            </div>
+
           )}
 
         </form>
@@ -310,4 +320,5 @@ export default function PrayerForm() {
     </section>
 
   )
+
 }

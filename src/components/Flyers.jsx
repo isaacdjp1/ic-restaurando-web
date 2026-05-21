@@ -1,54 +1,46 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay } from "swiper/modules"
 
 import "swiper/css"
 
-import ViernesImg from "../assets/images/Martes.webp"
-import SabadoImg from "../assets/images/Miercoles.webp"
-import DomingoImg from "../assets/images/Viernes.webp"
-
-const flyers = [
-  {
-    title: "Formación de liderazgo",
-    day: "Martes",
-    time: "7:00 PM - 8:30 PM",
-
-    description:
-      "Un tiempo de formación y crecimiento espiritual diseñado para preparar líderes comprometidos con el llamado de Dios. Cada encuentro es una oportunidad para aprender, servir y fortalecer el propósito ministerial en una atmósfera de fe y enseñanza.",
-
-    image: ViernesImg,
-  },
-
-  {
-    title: "Miércoles de Ayuno",
-    day: "Miércoles",
-    time: "9:30 AM - 12:00 PM",
-
-    description:
-      "Un tiempo especial para buscar la presencia de Dios a través del ayuno y la oración. Cada miércoles nos reunimos para fortalecer nuestra fe, escuchar Su voz y creer juntos por milagros, restauración y crecimiento espiritual.",
-
-    image: SabadoImg,
-  },
-
-  {
-    title: "Servicio Congregacional",
-    day: "Viernes",
-    time: "7:00 PM - 9:00 PM",
-
-    description:
-      "Un servicio lleno de adoración, palabra y comunión en la presencia de Dios. Ven junto a tu familia y disfruta de un tiempo especial donde creemos que Dios transformará vidas, restaurará corazones y traerá esperanza a cada hogar.",
-
-    image: DomingoImg,
-  },
-]
+import { supabase } from "../lib/supabase"
 
 export default function Flyers() {
 
   const [selectedFlyer, setSelectedFlyer] = useState(null)
 
+  const [flyers, setFlyers] = useState([])
+
+  useEffect(() => {
+
+    fetchFlyers()
+
+  }, [])
+
+  async function fetchFlyers() {
+
+    const { data, error } = await supabase
+      .from("flyers")
+      .select("*")
+      .eq("activo", true)
+      .order("orden", { ascending: true })
+
+    if (error) {
+
+      console.log(error)
+
+    } else {
+
+      setFlyers(data)
+
+    }
+
+  }
+
   return (
+
     <section
       id="eventos"
       className="bg-gradient-to-b from-gray-100 to-white py-24 px-6"
@@ -91,30 +83,30 @@ export default function Flyers() {
           }}
         >
 
-          {flyers.map((flyer, index) => (
+          {flyers.map((flyer) => (
 
-            <SwiperSlide key={index}>
+            <SwiperSlide key={flyer.id}>
 
               <div className="bg-white rounded-[35px] overflow-hidden shadow-2xl border border-black/5 hover:-translate-y-3 transition duration-300 h-auto flex flex-col">
 
                 <img
-                  src={flyer.image}
-                  alt={flyer.title}
+                  src={flyer.image_url}
+                  alt={flyer.titulo}
                   className="w-full object-contain bg-zinc-900"
                 />
 
                 <div className="p-8 flex flex-col flex-1 h-auto">
 
                   <p className="uppercase tracking-[4px] text-yellow-500 mb-3 text-sm font-semibold">
-                    {flyer.day}
+                    {flyer.dia}
                   </p>
 
                   <h3 className="text-2xl md:text-3xl font-black leading-tight mb-4">
-                    {flyer.title}
+                    {flyer.titulo}
                   </h3>
 
                   <p className="text-gray-600 text-lg mb-8">
-                    {flyer.time}
+                    {flyer.hora}
                   </p>
 
                   <button
@@ -156,27 +148,27 @@ export default function Flyers() {
             </button>
 
             <img
-              src={selectedFlyer.image}
-              alt={selectedFlyer.title}
+              src={selectedFlyer.image_url}
+              alt={selectedFlyer.titulo}
               className="w-full object-contain bg-zinc-900"
             />
 
             <div className="p-10">
 
               <p className="uppercase tracking-[4px] text-yellow-500 mb-3 text-sm font-semibold">
-                {selectedFlyer.day}
+                {selectedFlyer.dia}
               </p>
 
               <h2 className="text-3xl md:text-5xl font-black mb-6 leading-tight">
-                {selectedFlyer.title}
+                {selectedFlyer.titulo}
               </h2>
 
               <p className="text-2xl text-gray-700 mb-8">
-                {selectedFlyer.time}
+                {selectedFlyer.hora}
               </p>
 
               <p className="text-gray-600 text-lg leading-relaxed">
-                {selectedFlyer.description}
+                {selectedFlyer.descripcion}
               </p>
 
             </div>
@@ -188,5 +180,7 @@ export default function Flyers() {
       )}
 
     </section>
+
   )
+
 }

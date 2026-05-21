@@ -6,7 +6,6 @@ import heroImage2 from "../assets/images/gallery5.webp"
 import heroImage3 from "../assets/images/gallery2.webp"
 import heroImage4 from "../assets/images/gallery4.webp"
 import heroImage5 from "../assets/images/gallery6.webp"
-
 import logoImg from "../assets/images/logo.webp"
 
 
