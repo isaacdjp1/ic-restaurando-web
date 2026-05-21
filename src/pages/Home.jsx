@@ -6,6 +6,7 @@ import Live from "../components/Live"
 import PrayerForm from "../components/PrayerForm"
 import Footer from "../components/Footer"
 import Gallery from "../components/Gallery"
+import CookieBanner from "../components/CookieBanner"
 
 export default function Home() {
 
@@ -14,6 +15,7 @@ export default function Home() {
     <div className="overflow-hidden">
 
       <Navbar />
+      <CookieBanner />
       <Hero />
       <Services />
       <Flyers />
