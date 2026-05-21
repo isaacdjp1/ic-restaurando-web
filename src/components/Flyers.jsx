@@ -5,25 +5,25 @@ import { Autoplay } from "swiper/modules"
 
 import "swiper/css"
 
-import ViernesImg from "../assets/images/Martes.webp"
-import SabadoImg from "../assets/images/Miercoles.webp"
-import DomingoImg from "../assets/images/Viernes.webp"
+import ViernesImg from "../assets/images/Viernes.webp"
+import SabadoImg from "../assets/images/Sabado.webp"
+import DomingoImg from "../assets/images/Jovenes.webp"
 
 const flyers = [
   {
-    title: "Formación de liderazgo",
-    day: "Martes",
-    time: "7:00 PM - 8:30 PM",
+    title: "Servicio Congregacional",
+    day: "Viernes",
+    time: "7:00 PM - 9:00 PM",
 
     description:
-      "Un tiempo de formación y crecimiento espiritual diseñado para preparar líderes comprometidos con el llamado de Dios. Cada encuentro es una oportunidad para aprender, servir y fortalecer el propósito ministerial en una atmósfera de fe y enseñanza.",
+      "Un servicio lleno de adoración, palabra y comunión en la presencia de Dios. Ven junto a tu familia y disfruta de un tiempo especial donde creemos que Dios transformará vidas, restaurará corazones y traerá esperanza a cada hogar.",
 
     image: ViernesImg,
   },
 
   {
-    title: "Miércoles de Ayuno",
-    day: "Miércoles",
+    title: "Sábado de Ayuno",
+    day: "Sábado",
     time: "9:30 AM - 12:00 PM",
 
     description:
@@ -33,12 +33,13 @@ const flyers = [
   },
 
   {
-    title: "Servicio Congregacional",
-    day: "Viernes",
-    time: "7:00 PM - 9:00 PM",
+    title: "Evangelismo Juvenil",
+    day: "Sábado",
+    time: "5:30 PM - 7:30 PM",
 
     description:
-      "Un servicio lleno de adoración, palabra y comunión en la presencia de Dios. Ven junto a tu familia y disfruta de un tiempo especial donde creemos que Dios transformará vidas, restaurará corazones y traerá esperanza a cada hogar.",
+      "Un tiempo especial para compartir el amor de Dios, llevar esperanza y anunciar el mensaje de Jesús. Juntos estaremos impactando vidas, orando por las personas y demostrando que no es religión, es una verdadera relación con Dios. ❤️🔥
+",
 
     image: DomingoImg,
   },
