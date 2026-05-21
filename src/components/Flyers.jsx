@@ -7,7 +7,7 @@ import "swiper/css"
 
 import ViernesImg from "../assets/images/Viernes.webp"
 import SabadoImg from "../assets/images/Sabado.webp"
-import DomingoImg from "../assets/images/Jovenes.webp"
+import DomingoImg from "../assets/images/Evangelismo.webp"
 
 const flyers = [
   {
