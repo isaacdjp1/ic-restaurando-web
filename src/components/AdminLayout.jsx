@@ -13,7 +13,8 @@ import {
   Image,
   Radio,
   Images,
-  HandHelping
+  HandHelping,
+  MonitorSmartphone
 } from "lucide-react"
 
 import { supabase } from "../lib/supabase"
@@ -42,6 +43,12 @@ export default function AdminLayout({ children }) {
       name: "Dashboard",
       path: "/admin",
       icon: <LayoutDashboard size={20} />
+    },
+
+    {
+      name: "Portada Web",
+      path: "/admin/hero",
+      icon: <MonitorSmartphone size={20} />
     },
 
     {
@@ -129,32 +136,32 @@ export default function AdminLayout({ children }) {
       {/* SIDEBAR */}
 
       <aside
-     className={`
-    fixed z-50
-    top-0 left-0
-    h-screen overflow-y-auto
-    w-[280px]
+        className={`
+          fixed z-50
+          top-0 left-0
+          h-screen overflow-y-auto
+          w-[280px]
 
-    bg-[#050505]
-    border-r border-white/10
-    backdrop-blur-md
-    p-8
-    flex flex-col
-    transition-all duration-300
+          bg-[#050505]
+          border-r border-white/10
+          backdrop-blur-md
+          p-8
+          flex flex-col
+          transition-all duration-300
 
-    ${
-      mobileOpen
-        ? "translate-x-0"
-        : "-translate-x-full"
-    }
+          ${
+            mobileOpen
+              ? "translate-x-0"
+              : "-translate-x-full"
+          }
 
-    ${
-      isDashboard
-        ? "lg:flex lg:translate-x-0"
-        : "lg:hidden"
-    }
-   `}
->
+          ${
+            isDashboard
+              ? "lg:flex lg:translate-x-0"
+              : "lg:hidden"
+          }
+        `}
+      >
 
         {/* CLOSE MOBILE */}
 
@@ -277,21 +284,22 @@ export default function AdminLayout({ children }) {
       {/* CONTENT */}
 
       <main
-  className={`
-    flex-1
-    min-h-screen
-    overflow-y-auto
-    pt-[90px]
-    lg:pt-0
-    transition-all duration-300
+        className={`
+          flex-1
+          min-h-screen
+          overflow-y-auto
+          pt-[90px]
+          lg:pt-0
+          transition-all duration-300
 
-    ${
-      isDashboard
-        ? "lg:ml-[280px]"
-        : "lg:ml-0"
-    }
-  `}
->
+          ${
+            isDashboard
+              ? "lg:ml-[280px]"
+              : "lg:ml-0"
+          }
+        `}
+      >
+
         {children}
 
       </main>

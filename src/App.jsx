@@ -2,15 +2,14 @@ import { Routes, Route } from "react-router-dom"
 
 import Home from "./pages/Home"
 import Login from "./pages/Login"
-
 import AdminHome from "./pages/AdminHome"
 import AdminPeticiones from "./pages/AdminPeticiones"
 import AdminFlyers from "./pages/AdminFlyers"
 import AdminLivestream from "./pages/AdminLivestream"
 import AdminGallery from "./pages/AdminGallery"
-
 import ProtectedRoute from "./components/ProtectedRoute"
 import AdminLayout from "./components/AdminLayout"
+import AdminHero from "./pages/AdminHero"
 
 import Gallery from "./components/Gallery"
 
@@ -75,6 +74,17 @@ export default function App() {
 
           </ProtectedRoute>
         }
+      />
+
+      <Route
+      path="/admin/hero"
+      element={
+     <ProtectedRoute>
+
+      <AdminHero />
+
+    </ProtectedRoute>
+       }
       />
 
       <Route

@@ -38,7 +38,15 @@ export default function AdminHome() {
         "Sube y administra imágenes de la iglesia.",
       route: "/admin/galeria",
       icon: "📸"
-    }
+    },
+
+    {
+    title: "Portada Web",
+    description:
+    "Edita el contenido principal de la Portada de tu Web dinámicamente.",
+    route: "/admin/hero",
+    icon: "🔥"
+}
 
   ]
 
