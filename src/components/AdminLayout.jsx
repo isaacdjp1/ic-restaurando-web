@@ -14,7 +14,9 @@ import {
   Radio,
   Images,
   HandHelping,
-  MonitorSmartphone
+  MonitorSmartphone,
+  FileText,
+  Settings
 } from "lucide-react"
 
 import { supabase } from "../lib/supabase"
@@ -26,6 +28,8 @@ export default function AdminLayout({ children }) {
   const navigate = useNavigate()
 
   const [mobileOpen, setMobileOpen] = useState(false)
+
+  const [sidebarOpen, setSidebarOpen] = useState(true)
 
   const isDashboard = location.pathname === "/admin"
 
@@ -39,41 +43,53 @@ export default function AdminLayout({ children }) {
 
   const links = [
 
-    {
-      name: "Dashboard",
-      path: "/admin",
-      icon: <LayoutDashboard size={20} />
-    },
+  {
+    name: "Dashboard",
+    path: "/admin",
+    icon: <LayoutDashboard size={20} />
+  },
 
-    {
-      name: "Portada Web",
-      path: "/admin/hero",
-      icon: <MonitorSmartphone size={20} />
-    },
+  {
+    name: "Portada Web",
+    path: "/admin/hero",
+    icon: <MonitorSmartphone size={20} />
+  },
 
-    {
-      name: "Flyers",
-      path: "/admin/flyers",
-      icon: <Image size={20} />
-    },
+  {
+    name: "Contenido",
+    path: "/admin/contenido",
+    icon: <FileText size={20} />
+  },
 
-    {
-      name: "Galería",
-      path: "/admin/galeria",
-      icon: <Images size={20} />
-    },
+  {
+    name: "Configuración",
+    path: "/admin/configuracion",
+    icon: <Settings size={20} />
+  },
 
-    {
-      name: "Livestream",
-      path: "/admin/livestream",
-      icon: <Radio size={20} />
-    },
+  {
+    name: "Flyers",
+    path: "/admin/flyers",
+    icon: <Image size={20} />
+  },
 
-    {
-      name: "Peticiones",
-      path: "/admin/peticiones",
-      icon: <HandHelping size={20} />
-    }
+  {
+    name: "Galería",
+    path: "/admin/galeria",
+    icon: <Images size={20} />
+  },
+
+  {
+    name: "Livestream",
+    path: "/admin/livestream",
+    icon: <Radio size={20} />
+  },
+
+  {
+    name: "Peticiones",
+    path: "/admin/peticiones",
+    icon: <HandHelping size={20} />
+  }
 
   ]
 
@@ -133,19 +149,39 @@ export default function AdminLayout({ children }) {
 
       )}
 
+      {/* DESKTOP SIDEBAR TOGGLE */}
+
+<button
+  onClick={() => setSidebarOpen(!sidebarOpen)}
+  className={`
+  hidden lg:flex
+  fixed top-6 right-6
+
+  bg-white/10 hover:bg-white/20
+  border border-white/10
+  p-3 rounded-2xl
+  transition-all duration-300
+  backdrop-blur-xl
+`}
+>
+
+  <Menu size={22} />
+
+</button>
+
       {/* SIDEBAR */}
 
       <aside
         className={`
           fixed z-50
           top-0 left-0
-          h-screen overflow-y-auto
-          w-[280px]
+          h-[100dvh] overflow-y-auto pb-10
+          ${sidebarOpen ? "w-[280px]" : "w-[110px]"}
 
           bg-[#050505]
           border-r border-white/10
           backdrop-blur-md
-          p-8
+          ${sidebarOpen ? "p-8" : "p-4"}
           flex flex-col
           transition-all duration-300
 
@@ -167,7 +203,7 @@ export default function AdminLayout({ children }) {
 
         <div className="flex items-center justify-between lg:block">
 
-          <div>
+          <div className={`${sidebarOpen ? "block" : "hidden"} transition-all duration-300`}>
 
             <p className="uppercase tracking-[5px] text-yellow-400 text-sm mb-3">
               CMS
@@ -210,7 +246,8 @@ export default function AdminLayout({ children }) {
               onClick={() => setMobileOpen(false)}
 
               className={`
-                flex items-center gap-4
+                flex items-center
+                ${sidebarOpen ? "gap-4 justify-start" : "justify-center"}
                 px-5 py-4
                 rounded-2xl
                 transition-all duration-300
@@ -226,7 +263,9 @@ export default function AdminLayout({ children }) {
 
               {link.icon}
 
-              {link.name}
+              <span className={`${sidebarOpen ? "block" : "hidden"}`}>
+             {link.name}
+             </span>
 
             </Link>
 
@@ -236,7 +275,7 @@ export default function AdminLayout({ children }) {
 
         {/* FOOTER */}
 
-        <div className="mt-auto flex flex-col gap-4">
+        <div className="mt-10 flex flex-col gap-4">
 
           <a
             href="/"
@@ -293,15 +332,17 @@ export default function AdminLayout({ children }) {
           transition-all duration-300
 
           ${
-            isDashboard
-              ? "lg:ml-[280px]"
-              : "lg:ml-0"
-          }
+          isDashboard
+        ? sidebarOpen
+        ? "lg:ml-[280px]"
+        : "lg:ml-[110px]"
+        : "lg:ml-0"
+      }
         `}
       >
 
         {children}
-
+        
       </main>
 
     </div>

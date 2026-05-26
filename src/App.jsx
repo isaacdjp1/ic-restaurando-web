@@ -10,6 +10,8 @@ import AdminGallery from "./pages/AdminGallery"
 import ProtectedRoute from "./components/ProtectedRoute"
 import AdminLayout from "./components/AdminLayout"
 import AdminHero from "./pages/AdminHero"
+import AdminContenido from "./pages/AdminContenido"
+import AdminConfiguracion from "./pages/AdminConfiguracion"
 
 import Gallery from "./components/Gallery"
 
@@ -86,6 +88,36 @@ export default function App() {
     </ProtectedRoute>
        }
       />
+
+      <Route
+  path="/admin/contenido"
+  element={
+    <ProtectedRoute>
+
+      <AdminLayout>
+
+        <AdminContenido />
+
+      </AdminLayout>
+
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/admin/configuracion"
+  element={
+    <ProtectedRoute>
+
+      <AdminLayout>
+
+        <AdminConfiguracion />
+
+      </AdminLayout>
+
+    </ProtectedRoute>
+  }
+/>
 
       <Route
         path="/admin/livestream"

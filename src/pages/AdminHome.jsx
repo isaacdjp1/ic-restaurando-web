@@ -46,6 +46,22 @@ export default function AdminHome() {
     "Edita el contenido principal de la Portada de tu Web dinámicamente.",
     route: "/admin/hero",
     icon: "🔥"
+},
+
+{
+  title: "Contenido",
+  description:
+    "Administra servicios, horarios y contenido general.",
+  route: "/admin/contenido",
+  icon: "📄"
+},
+
+{
+  title: "Configuración",
+  description:
+    "Controla branding, redes e idioma.",
+  route: "/admin/configuracion",
+  icon: "⚙️"
 }
 
   ]
@@ -120,8 +136,7 @@ export default function AdminHome() {
 
           className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-20"
         >
-
-          <div className="max-w-6xl">
+          <div className="max-w-3xl">
 
             <p className="uppercase tracking-[6px] text-yellow-400 mb-8">
               PANEL CMS
