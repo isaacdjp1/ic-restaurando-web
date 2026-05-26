@@ -324,6 +324,12 @@ export default function AdminContenido() {
 
             <div className="bg-white/5 border border-white/10 rounded-3xl p-8 grid gap-6">
 
+            <p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+
+            Nuestra Visión
+
+            </p>
+
               <textarea
                 value={footer.vision || ""}
                 onChange={(e) =>
@@ -339,6 +345,12 @@ export default function AdminContenido() {
                 className="bg-black border border-white/10 rounded-2xl px-5 py-4 min-h-[140px]"
               />
 
+              <p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+
+             Nuestra Misión
+
+             </p>
+
               <textarea
                 value={footer.mission || ""}
                 onChange={(e) =>
@@ -353,6 +365,12 @@ export default function AdminContenido() {
                 placeholder="Misión"
                 className="bg-black border border-white/10 rounded-2xl px-5 py-4 min-h-[140px]"
               />
+
+              <p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+
+             Facebook
+
+             </p>
 
               <input
                 type="text"
@@ -370,6 +388,12 @@ export default function AdminContenido() {
                 className="bg-black border border-white/10 rounded-2xl px-5 py-4"
               />
 
+              <p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+
+             Instagram
+
+              </p>
+
               <input
                 type="text"
                 value={footer.instagram || ""}
@@ -385,6 +409,12 @@ export default function AdminContenido() {
                 placeholder="Instagram"
                 className="bg-black border border-white/10 rounded-2xl px-5 py-4"
               />
+
+              <p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+
+              YouTube
+
+             </p>
 
               <input
                 type="text"

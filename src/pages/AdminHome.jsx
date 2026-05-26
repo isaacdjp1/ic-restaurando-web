@@ -335,9 +335,17 @@ export default function AdminHome() {
 
                 <div className="relative z-10">
 
-                  <h2 className="text-3xl font-black mb-4">
-                    {card.title}
-                  </h2>
+                  <h2
+                 className="
+                 text-3xl
+                 font-black
+                 mb-4
+                 min-h-[80px]
+                 leading-tight
+                 "
+        >
+  {card.title}
+</h2>
 
                   <p className="text-white/60 leading-relaxed">
                     {card.description}

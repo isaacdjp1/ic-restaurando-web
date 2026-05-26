@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"
 import { supabase } from "../lib/supabase"
 import { motion } from "framer-motion"
 
-import logo from "../assets/images/logo.webp"
 
 export default function Login() {
 
@@ -13,6 +12,8 @@ export default function Login() {
   const [password, setPassword] = useState("")
 
   const [loading, setLoading] = useState(false)
+
+  const [settings, setSettings] = useState(null)
 
   useEffect(() => {
 
@@ -31,7 +32,25 @@ export default function Login() {
 
     checkSession()
 
+    fetchSettings()
+
   }, [])
+
+  async function fetchSettings() {
+
+  const { data } = await supabase
+    .from("site_settings")
+    .select("*")
+    .eq("activo", true)
+    .single()
+
+  if (data) {
+
+    setSettings(data)
+
+  }
+
+}
 
   async function handleLogin(e) {
 
@@ -180,7 +199,7 @@ export default function Login() {
       >
 
         <img
-          src={logo}
+          src={settings?.logo_url}
           alt="Logo"
           className="
             w-[700px]

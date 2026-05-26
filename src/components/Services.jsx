@@ -1,50 +1,36 @@
 import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import { supabase } from "../lib/supabase"
 
-const services = [
-  {
-    day: "Martes",
-    title: "Formación de liderazgo",
-    time: "7:00 PM - 8:30 PM",
-    extra: "Maestro: Lucas Contreras",
-  },
 
-  {
-    day: "Miércoles & Sábados",
-    title: "Ayuno Congregacional",
-    time: "9:30 AM - 12:00 PM",
-    extra: "Tiempo de oración y búsqueda",
-  },
-
-  {
-    day: "Viernes",
-    title: "Servicio Congregacional",
-    time: "7:00 PM - 9:00 PM",
-    extra: "Servicio general de adoración",
-  },
-
-  {
-    day: "Sábado",
-    title: "Servicio Juvenil GPC",
-    time: "5:30 PM - 7:00 PM",
-    extra: "Reunión de jóvenes",
-  },
-
-  {
-    day: "Domingo",
-    title: "Clases de Liderazgo",
-    time: "8:00 AM - 8:55 AM",
-    extra: "Clases para formar líderes",
-  },
-
-  {
-    day: "Domingo",
-    title: "Escuela Dominical",
-    time: "9:00 AM - 12:00 PM",
-    extra: "Nuestra Escuela Dominical",
-  },
-]
 
 export default function Services() {
+
+  const [services, setServices] = useState([])
+
+  useEffect(() => {
+
+    fetchServices()
+
+  }, [])
+
+  async function fetchServices() {
+
+    const { data, error } = await supabase
+      .from("services")
+      .select("*")
+
+    console.log(data)
+    console.log(error)
+
+    if (data) {
+
+      setServices(data)
+
+    }
+
+  }
+
   return (
     <section
       id="servicios"
@@ -70,7 +56,7 @@ export default function Services() {
           {services.map((service, index) => (
 
             <motion.div
-              key={index}
+              key={service.id}
               initial={{ opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{

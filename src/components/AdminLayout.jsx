@@ -29,7 +29,7 @@ export default function AdminLayout({ children }) {
 
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const sidebarOpen = true
 
   const isDashboard = location.pathname === "/admin"
 
@@ -149,25 +149,6 @@ export default function AdminLayout({ children }) {
 
       )}
 
-      {/* DESKTOP SIDEBAR TOGGLE */}
-
-<button
-  onClick={() => setSidebarOpen(!sidebarOpen)}
-  className={`
-  hidden lg:flex
-  fixed top-6 right-6
-
-  bg-white/10 hover:bg-white/20
-  border border-white/10
-  p-3 rounded-2xl
-  transition-all duration-300
-  backdrop-blur-xl
-`}
->
-
-  <Menu size={22} />
-
-</button>
 
       {/* SIDEBAR */}
 
@@ -176,12 +157,12 @@ export default function AdminLayout({ children }) {
           fixed z-50
           top-0 left-0
           h-[100dvh] overflow-y-auto pb-10
-          ${sidebarOpen ? "w-[280px]" : "w-[110px]"}
+          w-[280px]
 
           bg-[#050505]
           border-r border-white/10
           backdrop-blur-md
-          ${sidebarOpen ? "p-8" : "p-4"}
+          p-8
           flex flex-col
           transition-all duration-300
 
@@ -203,7 +184,7 @@ export default function AdminLayout({ children }) {
 
         <div className="flex items-center justify-between lg:block">
 
-          <div className={`${sidebarOpen ? "block" : "hidden"} transition-all duration-300`}>
+          <div>
 
             <p className="uppercase tracking-[5px] text-yellow-400 text-sm mb-3">
               CMS
@@ -247,7 +228,7 @@ export default function AdminLayout({ children }) {
 
               className={`
                 flex items-center
-                ${sidebarOpen ? "gap-4 justify-start" : "justify-center"}
+                gap-4 justify-start
                 px-5 py-4
                 rounded-2xl
                 transition-all duration-300
@@ -263,7 +244,7 @@ export default function AdminLayout({ children }) {
 
               {link.icon}
 
-              <span className={`${sidebarOpen ? "block" : "hidden"}`}>
+              <span>
              {link.name}
              </span>
 
@@ -332,17 +313,15 @@ export default function AdminLayout({ children }) {
           transition-all duration-300
 
           ${
-          isDashboard
-        ? sidebarOpen
+        isDashboard
         ? "lg:ml-[280px]"
-        : "lg:ml-[110px]"
         : "lg:ml-0"
       }
         `}
       >
 
         {children}
-        
+
       </main>
 
     </div>

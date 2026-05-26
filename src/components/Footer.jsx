@@ -1,8 +1,56 @@
-import logoImg from "../assets/images/logo.png"
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa"
 import Location from "./Location"
+import { useEffect, useState } from "react"
+import { supabase } from "../lib/supabase"
 
 export default function Footer() {
+   const [footer, setFooter] = useState(null)
+   const [heroData, setHeroData] = useState(null)
+
+  useEffect(() => {
+
+    fetchFooter()
+
+    fetchHero()
+
+  }, [])
+
+  async function fetchFooter() {
+
+    const { data, error } = await supabase
+      .from("footer_content")
+      .select("*")
+      .eq("activo", true)
+      .single()
+
+    console.log(data)
+    console.log(error)
+
+    if (data) {
+
+      setFooter(data)
+
+    }
+
+
+  }
+
+  async function fetchHero() {
+
+  const { data } = await supabase
+    .from("hero_content")
+    .select("*")
+    .eq("id", 1)
+    .single()
+
+  if (data) {
+
+    setHeroData(data)
+
+  }
+
+}
+
   return (
     <footer
       id="nosotros"
@@ -16,7 +64,7 @@ export default function Footer() {
         <div>
 
           <img
-            src={logoImg}
+            src={heroData?.logo_url}
             alt="IC Restaurando el Altar Familiar"
             className="w-72 mb-8 hover:scale-105 transition-all duration-500"
           />
@@ -31,7 +79,7 @@ export default function Footer() {
 
               <p className="text-gray-300 leading-relaxed text-lg">
 
-                Restaurar vidas, fortalecer familias y levantar generaciones con propósito a través del poder transformador de Jesucristo y Su Palabra.
+                {footer?.vision}
 
               </p>
 
@@ -45,7 +93,7 @@ export default function Footer() {
 
               <p className="text-gray-300 leading-relaxed text-lg">
 
-                Llevar el mensaje de salvación, esperanza y restauración a cada persona, formando discípulos comprometidos con Dios y Su Reino.
+                {footer?.mission}
 
               </p>
 
@@ -74,7 +122,7 @@ export default function Footer() {
           <div className="flex flex-col gap-6 text-lg">
 
             <a
-              href="https://facebook.com/restaurandoeaf"
+              href={footer?.facebook}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 text-gray-300 hover:text-yellow-400 hover:scale-105 hover:translate-x-1 transition-all duration-300"
@@ -87,7 +135,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://instagram.com/restaurandoeaf"
+              href={footer?.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 text-gray-300 hover:text-yellow-400 hover:scale-105 hover:translate-x-1 transition-all duration-300"
@@ -100,7 +148,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://youtube.com/@restaurandoeaf"
+              href={footer?.youtube}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 text-gray-300 hover:text-yellow-400 hover:scale-105 hover:translate-x-1 transition-all duration-300"
@@ -124,8 +172,7 @@ export default function Footer() {
 
         <p className="text-gray-500 text-sm hover:text-gray-300 transition duration-300">
 
-          © 2026 IC Restaurando el Altar Familiar.
-          Todos los derechos reservados.
+          {footer?.copyright}
 
         </p>
 
