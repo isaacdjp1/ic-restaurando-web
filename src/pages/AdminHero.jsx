@@ -196,7 +196,7 @@ const [slide5Preview, setSlide5Preview] = useState("")
 
   return (
 
-    <div className="min-h-screen bg-black flex items-center justify-center">
+    <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center">
 
       <div className="flex flex-col items-center gap-6">
 
@@ -205,12 +205,12 @@ const [slide5Preview, setSlide5Preview] = useState("")
           h-20
           rounded-full
           border-4
-          border-yellow-500
+          border-black
           border-t-transparent
           animate-spin
         "></div>
 
-        <p className="text-white text-lg tracking-wide">
+        <p className="text-[#6e6e73] text-lg tracking-wide">
           Cargando Portada Web...
         </p>
 
@@ -224,7 +224,7 @@ const [slide5Preview, setSlide5Preview] = useState("")
 
   return (
 
-    <section className="bg-black min-h-screen text-white px-6 py-20">
+    <section className="min-h-screen bg-[#f5f5f7] px-6 py-16 text-[#111111]">
 
       <div className="max-w-5xl mx-auto">
 
@@ -232,28 +232,30 @@ const [slide5Preview, setSlide5Preview] = useState("")
 
           <div>
 
-            <p className="uppercase tracking-[6px] text-yellow-400 mb-4">
+            <p className="uppercase tracking-[6px] text-[#8e8e93] mb-4 text-sm font-medium">
               CMS
             </p>
 
-            <h1 className="text-5xl font-black">
+            <h1 className="text-5xl font-semibold tracking-[-2px]">
               Portada Web
             </h1>
 
           </div>
 
-          <button
-            onClick={() => navigate("/admin")}
-            className="
-              bg-white/10
-              hover:bg-white/20
-              border border-white/10
-              px-8 py-4
-              rounded-2xl
-              font-semibold
-              transition
-            "
-          >
+         <button
+  onClick={() => navigate("/admin")}
+  className="
+    bg-white
+    hover:bg-[#f2f2f2]
+    border border-[#dcdcdc]
+    px-7 py-3
+    rounded-2xl
+    text-[#111]
+    font-medium
+    transition-all duration-300
+    shadow-sm
+  "
+>
 
             Dashboard
 
@@ -262,16 +264,17 @@ const [slide5Preview, setSlide5Preview] = useState("")
         </div>
 
         <div className="
-          bg-white/[0.03]
-          border border-white/10
-          rounded-[35px]
-          p-10
-          space-y-8
-        ">
+  bg-white
+  border border-[#e5e5e5]
+  rounded-[32px]
+  p-10
+  space-y-10
+  shadow-[0_4px_20px_rgba(0,0,0,0.04)]
+">
 
             <div>
 
-          <label className="block mb-4 text-white/60">
+          <label className="block mb-4 text-[#6e6e73]">
           Logo Iglesia
         </label>
 
@@ -285,8 +288,9 @@ const [slide5Preview, setSlide5Preview] = useState("")
           h-40
           object-contain
           rounded-2xl
-          border border-white/10
-          bg-black
+          bg-[#f7f7f7]
+         border border-[#dcdcdc]
+         text-[#111]
           p-4
           mb-4
         "
@@ -298,8 +302,8 @@ const [slide5Preview, setSlide5Preview] = useState("")
   className="
     flex items-center justify-center
     w-full
-    bg-black
-    border border-white/10
+    bg-[#f7f7f7]
+    border border-[#dcdcdc]
     rounded-2xl
     px-6 py-5
     cursor-pointer
@@ -308,7 +312,7 @@ const [slide5Preview, setSlide5Preview] = useState("")
   "
 >
 
-  <span className="text-white/70 font-medium">
+  <span className="text-[#6e6e73] font-medium">
 
     {
       logoFile
@@ -387,8 +391,9 @@ const [slide5Preview, setSlide5Preview] = useState("")
   className="
     flex items-center justify-center
     w-full
-    bg-black
-    border border-white/10
+   bg-[#f7f7f7]
+   border border-[#dcdcdc]
+   text-[#111]
     rounded-2xl
     px-6 py-5
     cursor-pointer
@@ -397,7 +402,7 @@ const [slide5Preview, setSlide5Preview] = useState("")
   "
 >
 
-  <span className="text-white/70 font-medium">
+  <span className="text-[#6e6e73] font-medium">
 
   {
     slide === 1 && slide1
@@ -557,8 +562,8 @@ const [slide5Preview, setSlide5Preview] = useState("")
               onChange={(e) => setTitulo(e.target.value)}
               className="
                 w-full
-                bg-black
-                border border-white/10
+                bg-[#f7f7f7]
+                border border-[#dcdcdc]
                 rounded-2xl
                 px-6 py-5
                 outline-none
@@ -583,8 +588,8 @@ const [slide5Preview, setSlide5Preview] = useState("")
                 onChange={(e) => setBotonTexto(e.target.value)}
                 className="
                   w-full
-                  bg-black
-                  border border-white/10
+                  bg-[#f7f7f7]
+                  border border-[#dcdcdc]
                   rounded-2xl
                   px-6 py-5
                   outline-none
@@ -604,12 +609,12 @@ const [slide5Preview, setSlide5Preview] = useState("")
              onChange={(e) => setBotonLink(e.target.value)}
              className="
              w-full
-             bg-black
-             border border-white/10
+             bg-[#f7f7f7]
+             border border-[#dcdcdc]
              rounded-2xl
              px-6 py-5
              outline-none
-             text-white
+             text-[#111111]
             "
             >
 
@@ -633,14 +638,15 @@ const [slide5Preview, setSlide5Preview] = useState("")
             onClick={updateHero}
             disabled={loading}
             className="
-              bg-yellow-500
-              hover:bg-yellow-400
-              text-black
-              px-10 py-5
-              rounded-2xl
-              font-black
-              transition-all duration-300
-            "
+  bg-black
+  hover:bg-[#1c1c1e]
+  text-white
+  px-10 py-5
+  rounded-2xl
+  font-semibold
+  transition-all duration-300
+  shadow-lg
+"
           >
 
             {loading

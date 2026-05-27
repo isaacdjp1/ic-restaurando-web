@@ -95,7 +95,7 @@ export default function AdminLayout({ children }) {
 
   return (
 
-    <div className="min-h-screen bg-black text-white flex">
+    <div className="min-h-screen bg-[#f5f5f7] text-[#111111] flex">
 
       {/* MOBILE TOPBAR */}
 
@@ -103,25 +103,30 @@ export default function AdminLayout({ children }) {
         className="
           fixed top-0 left-0 w-full z-50
           lg:hidden
-          bg-black/80
+          bg-[#ffffffcc]
           backdrop-blur-xl
-          border-b border-white/10
+          border-b border-zinc-200
           px-6 py-5
           flex items-center justify-between
         "
       >
 
-        <h1 className="text-xl font-black">
-          CMS Admin
+        <h1 className="
+        text-lg
+        font-semibold
+        tracking-tight
+        text-[#111111]
+        ">
+          VEYRON CMS
         </h1>
 
         <button
           onClick={() => setMobileOpen(true)}
           className="
-            bg-white/10
+            bg-zinc-100
             p-3
             rounded-xl
-            hover:bg-white/20
+            hover:bg-zinc-200
             transition
           "
         >
@@ -152,33 +157,41 @@ export default function AdminLayout({ children }) {
 
       {/* SIDEBAR */}
 
-      <aside
-        className={`
-          fixed z-50
-          top-0 left-0
-          h-[100dvh] overflow-y-auto pb-10
-          w-[280px]
+     <aside
+     className={`
+     fixed z-50
+     top-0 left-0
+     h-[100dvh]
+     overflow-y-auto
+     pb-10
 
-          bg-[#050505]
-          border-r border-white/10
-          backdrop-blur-md
-          p-8
-          flex flex-col
-          transition-all duration-300
+     w-[250px]
 
-          ${
-            mobileOpen
-              ? "translate-x-0"
-              : "-translate-x-full"
-          }
+     bg-[#ffffffcc]
+     backdrop-blur-2xl
 
-          ${
-            isDashboard
-              ? "lg:flex lg:translate-x-0"
-              : "lg:hidden"
-          }
-        `}
-      >
+     border-r border-zinc-200/70
+
+     p-6
+     flex flex-col
+
+     transition-all duration-300
+
+     sidebar-scroll
+
+    ${
+      mobileOpen
+        ? "translate-x-0"
+        : "-translate-x-full"
+    }
+
+    ${
+      isDashboard
+        ? "lg:flex lg:translate-x-0"
+        : "lg:hidden"
+    }
+  `}
+>
 
         {/* CLOSE MOBILE */}
 
@@ -186,11 +199,24 @@ export default function AdminLayout({ children }) {
 
           <div>
 
-            <p className="uppercase tracking-[5px] text-yellow-400 text-sm mb-3">
+            <p className="
+            uppercase
+            tracking-[4px]
+            text-zinc-400
+            text-xs
+            font-medium
+            mb-2
+            ">
               CMS
             </p>
 
-            <h1 className="text-3xl font-black leading-tight">
+            <h1 className="
+             text-2xl
+             font-semibold
+             tracking-tight
+             leading-tight
+             text-[#111111]
+    ">
               Restaurando
               <br />
               El Altar
@@ -230,14 +256,14 @@ export default function AdminLayout({ children }) {
                 flex items-center
                 gap-4 justify-start
                 px-5 py-4
-                rounded-2xl
+                rounded-xl
                 transition-all duration-300
                 font-semibold
 
                 ${
                   location.pathname === link.path
-                    ? "bg-yellow-500 text-black shadow-[0_0_25px_rgba(234,179,8,0.35)]"
-                    : "bg-white/[0.03] hover:bg-white/10 text-white"
+                    ? "bg-black text-white shadow-sm"
+                    : "text-zinc-500 hover:bg-zinc-100"
                 }
               `}
             >
@@ -263,13 +289,13 @@ export default function AdminLayout({ children }) {
             target="_blank"
             className="
               w-full
-              bg-white/5
-              hover:bg-white/10
-              border border-white/10
-              text-white
+              bg-white
+              hover:bg-zinc-100
+              border border-zinc-200
+              text-zinc-700
               py-4
               rounded-2xl
-              font-semibold
+              font-medium
               transition-all duration-300
               text-center
             "

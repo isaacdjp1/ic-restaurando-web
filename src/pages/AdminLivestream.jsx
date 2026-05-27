@@ -231,7 +231,7 @@ export default function AdminLivestream() {
 
   return (
 
-    <section className="min-h-screen bg-black text-white px-6 py-20">
+    <section className="min-h-screen bg-[#f5f5f7] text-[#111111] px-6 py-16">
 
       <div className="max-w-7xl mx-auto">
 
@@ -241,11 +241,11 @@ export default function AdminLivestream() {
 
           <div>
 
-            <p className="uppercase tracking-[5px] text-yellow-500 mb-3 text-sm">
+            <p className="uppercase tracking-[5px] text-[#8e8e93] mb-3 text-sm">
               Livestream CMS
             </p>
 
-            <h1 className="text-4xl md:text-5xl font-black">
+            <h1 className="text-5xl font-semibold tracking-[-2px]">
               Admin Livestream
             </h1>
 
@@ -253,7 +253,17 @@ export default function AdminLivestream() {
 
           <Link
             to="/admin"
-            className="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:bg-yellow-500 transition"
+            className="
+bg-white
+text-[#111111]
+px-8 py-4
+rounded-2xl
+font-medium
+border border-[#dcdcdc]
+hover:bg-[#f2f2f2]
+transition
+shadow-sm
+"
           >
 
             Dashboard
@@ -266,19 +276,19 @@ export default function AdminLivestream() {
 
           {/* FORM */}
 
-          <div className="bg-gradient-to-b from-zinc-950 to-black border border-white/10 rounded-[35px] p-10 shadow-2xl">
+          <div className="bg-white border border-[#e5e5e5] rounded-[32px] p-10 shadow-sm">
 
             <div className="mb-12">
 
-              <p className="uppercase tracking-[5px] text-yellow-500 mb-3 text-sm">
+              <p className="uppercase tracking-[5px] text-[#8e8e93] mb-3 text-sm">
                 Livestream CMS
               </p>
 
-              <h2 className="text-4xl font-black">
+              <h2 className="text-4xl font-semibold tracking-[-1px]">
                 Configuración
               </h2>
 
-              <p className="text-gray-500 mt-3">
+              <p className="text-[#6e6e73] mt-3">
                 Administra el livestream, textos, miniaturas y transmisión en vivo.
               </p>
 
@@ -290,7 +300,7 @@ export default function AdminLivestream() {
 
               <div>
 
-                <label className="block text-sm uppercase tracking-[3px] text-yellow-500 mb-4">
+                <label className="block text-sm uppercase tracking-[3px] text-[#8e8e93] mb-4">
 
                   Título Superior
 
@@ -306,7 +316,11 @@ export default function AdminLivestream() {
                       title: e.target.value,
                     })
                   }
-                  className="w-full bg-black border border-white/10 rounded-2xl px-6 py-5 text-white outline-none focus:border-yellow-500 transition text-lg"
+                  className="w-full bg-[#f7f7f7]
+                  border border-[#dcdcdc]
+                  rounded-2xl
+                  px-6 py-4
+                  text-[#111111] outline-none focus:border-[#bdbdbd] transition text-lg"
                 />
 
               </div>
@@ -315,7 +329,7 @@ export default function AdminLivestream() {
 
               <div>
 
-                <label className="block text-sm uppercase tracking-[3px] text-yellow-500 mb-4">
+                <label className="block text-sm uppercase tracking-[3px] text-[#8e8e93] mb-4">
 
                   Descripción Superior
 
@@ -330,7 +344,20 @@ export default function AdminLivestream() {
                       subtitle: e.target.value,
                     })
                   }
-                  className="w-full bg-black border border-white/10 rounded-2xl px-6 py-5 text-white outline-none h-36 resize-none focus:border-yellow-500 transition text-lg"
+                  className="
+w-full
+bg-[#f7f7f7]
+border border-[#dcdcdc]
+rounded-2xl
+px-6 py-4
+text-[#111111]
+outline-none
+h-36
+resize-none
+focus:border-[#bdbdbd]
+transition
+text-lg
+"
                 />
 
               </div>
@@ -339,7 +366,7 @@ export default function AdminLivestream() {
 
               <div>
 
-                <label className="block text-sm uppercase tracking-[3px] text-yellow-500 mb-4">
+                <label className="block text-sm uppercase tracking-[3px] text-[#8e8e93] mb-4">
 
                   Título Lateral
 
@@ -355,7 +382,18 @@ export default function AdminLivestream() {
                       side_title: e.target.value,
                     })
                   }
-                  className="w-full bg-black border border-white/10 rounded-2xl px-6 py-5 text-white outline-none focus:border-yellow-500 transition text-lg"
+                  className="
+w-full
+bg-[#f7f7f7]
+border border-[#dcdcdc]
+rounded-2xl
+px-6 py-4
+text-[#111111]
+outline-none
+focus:border-[#bdbdbd]
+transition
+text-lg
+"
                 />
 
               </div>
@@ -364,7 +402,7 @@ export default function AdminLivestream() {
 
               <div>
 
-                <label className="block text-sm uppercase tracking-[3px] text-yellow-500 mb-4">
+                <label className="block text-sm uppercase tracking-[3px] text-[#8e8e93] mb-4">
 
                   Descripción Lateral
 
@@ -379,7 +417,20 @@ export default function AdminLivestream() {
                       side_description: e.target.value,
                     })
                   }
-                  className="w-full bg-black border border-white/10 rounded-2xl px-6 py-5 text-white outline-none h-40 resize-none focus:border-yellow-500 transition text-lg"
+                  className="
+w-full
+bg-[#f7f7f7]
+border border-[#dcdcdc]
+rounded-2xl
+px-6 py-4
+text-[#111111]
+outline-none
+h-40
+resize-none
+focus:border-[#bdbdbd]
+transition
+text-lg
+"
                 />
 
               </div>
@@ -388,7 +439,7 @@ export default function AdminLivestream() {
 
               <div>
 
-                <label className="block text-sm uppercase tracking-[3px] text-yellow-500 mb-4">
+                <label className="block text-sm uppercase tracking-[3px] text-[#8e8e93] mb-4">
 
                   Texto del Botón
 
@@ -404,7 +455,18 @@ export default function AdminLivestream() {
                       button_text: e.target.value,
                     })
                   }
-                  className="w-full bg-black border border-white/10 rounded-2xl px-6 py-5 text-white outline-none focus:border-yellow-500 transition text-lg"
+                  className="
+w-full
+bg-[#f7f7f7]
+border border-[#dcdcdc]
+rounded-2xl
+px-6 py-4
+text-[#111111]
+outline-none
+focus:border-[#bdbdbd]
+transition
+text-lg
+"
                 />
 
               </div>
@@ -413,7 +475,7 @@ export default function AdminLivestream() {
 
               <div>
 
-                <label className="block text-sm uppercase tracking-[3px] text-yellow-500 mb-4">
+                <label className="block text-sm uppercase tracking-[3px] text-[#8e8e93] mb-4">
 
                   Link de YouTube
 
@@ -433,24 +495,38 @@ export default function AdminLivestream() {
                     })
 
                   }}
-                  className="w-full bg-black border border-white/10 rounded-2xl px-6 py-5 text-white outline-none focus:border-yellow-500 transition text-lg"
+                  className="
+w-full
+bg-[#f7f7f7]
+border border-[#dcdcdc]
+rounded-2xl
+px-6 py-4
+text-[#111111]
+outline-none
+focus:border-[#bdbdbd]
+transition
+text-lg
+"
                 />
 
               </div>
 
               {/* THUMBNAIL */}
 
-              <div className="bg-zinc-950 border border-dashed border-white/10 rounded-[30px] p-8">
+              <div className="bg-[#fcfcfc]
+               border border-dashed border-[#dcdcdc]
+               rounded-[28px]
+               p-8">
 
                 <div className="mb-6">
 
-                  <p className="uppercase tracking-[3px] text-yellow-500 text-sm mb-3">
+                  <p className="uppercase tracking-[3px] text-[#8e8e93] text-sm mb-3">
 
                     Thumbnail Personalizada
 
                   </p>
 
-                  <h3 className="text-2xl font-black mb-2">
+                  <h3 className="text-2xl font-semibold mb-2">
 
                     Miniatura Opcional
 
@@ -465,7 +541,7 @@ export default function AdminLivestream() {
 
                 </div>
 
-                <label className="flex flex-col items-center justify-center border border-white/10 rounded-2xl p-10 cursor-pointer hover:border-yellow-500 transition bg-black">
+                <label className="flex flex-col items-center justify-center border border-[#dcdcdc] rounded-2xl p-10 cursor-pointer hover:border-[#bdbdbd] transition bg-white">
 
                   <div className="text-center">
 
@@ -510,7 +586,7 @@ export default function AdminLivestream() {
 
                     <div className="flex items-center justify-between mb-4">
 
-                      <p className="text-sm uppercase tracking-[3px] text-yellow-500">
+                      <p className="text-sm uppercase tracking-[3px] text-[#8e8e93]">
 
                         Preview Thumbnail
 
@@ -536,7 +612,7 @@ export default function AdminLivestream() {
                     <img
                       src={streamData.thumbnail_url}
                       alt="Thumbnail"
-                      className="w-full max-w-lg rounded-3xl border border-white/10 shadow-2xl"
+                      className="w-full max-w-lg rounded-3xl border border-[#e5e5e5] shadow-sm"
                     />
 
                   </div>
@@ -547,17 +623,17 @@ export default function AdminLivestream() {
 
               {/* LIVE TOGGLE */}
 
-              <div className="bg-black border border-white/10 rounded-2xl px-6 py-5 flex items-center justify-between">
+              <div className="bg-white border border-[#e5e5e5] rounded-2xl shadow-sm px-6 py-5 flex items-center justify-between">
 
                 <div>
 
-                  <p className="uppercase tracking-[3px] text-yellow-500 text-sm mb-2">
+                  <p className="uppercase tracking-[3px] text-[#8e8e93] text-sm mb-2">
 
                     Estado del Live
 
                   </p>
 
-                  <h3 className="text-2xl font-black">
+                  <h3 className="text-2xl font-semibold">
 
                     Mostrar “Estamos En Vivo”
 
@@ -584,7 +660,7 @@ export default function AdminLivestream() {
               <button
                 onClick={handleSave}
                 disabled={loading}
-                className="bg-yellow-500 hover:bg-yellow-400 text-black px-10 py-6 rounded-2xl font-black text-xl transition duration-300 hover:scale-[1.02]"
+                className="bg-black hover:bg-[#1c1c1e] text-white px-10 py-6 rounded-2xl font-semibold text-lg transition duration-300 hover:scale-[1.02]"
               >
 
                 {loading
@@ -599,11 +675,11 @@ export default function AdminLivestream() {
 
           {/* PREVIEW */}
 
-          <div className="bg-black border border-white/10 rounded-[35px] overflow-hidden">
+          <div className="bg-white border border-[#e5e5e5] rounded-[32px] overflow-hidden shadow-sm">
 
-         <div className="p-8 border-b border-white/10">
+         <div className="p-8 border-b border-[#e5e5e5]">
 
-        <p className="uppercase tracking-[4px] text-yellow-500">
+        <p className="uppercase tracking-[4px] text-[#8e8e93]">
           Preview en Tiempo Real
        </p>
 
@@ -612,13 +688,13 @@ export default function AdminLivestream() {
 
             {/* HEADER */}
 
-            <div className="text-center py-16 px-8 border-b border-white/10">
+            <div className="text-center py-16 px-8 border-b border-[#e5e5e5]">
 
-              <p className="uppercase tracking-[5px] text-yellow-400 mb-4">
+              <p className="uppercase tracking-[5px] text-[#8e8e93] mb-4">
                 En Vivo
               </p>
 
-              <h2 className="text-5xl font-black mb-6 break-words">
+              <h2 className="text-5xl font-semibold mb-6 break-words">
 
                 {streamData.title || "Transmisiones Online"}
 
@@ -640,9 +716,9 @@ export default function AdminLivestream() {
 
                 {/* VIDEO */}
 
-                <div className="rounded-[35px] overflow-hidden shadow-2xl border border-white/10">
+                <div className="rounded-[35px] overflow-hidden shadow-2xl border border-[#e5e5e5]">
 
-                  <div className="aspect-video relative bg-zinc-950">
+                  <div className="aspect-video relative bg-[#f5f5f7]">
 
                     {!playPreview ? (
 
@@ -708,7 +784,7 @@ export default function AdminLivestream() {
 
                   )}
 
-                  <h3 className="text-4xl md:text-5xl font-black leading-tight mb-8 break-words">
+                  <h3 className="text-4xl md:text-5xl font-semibold leading-tight mb-8 break-words">
 
                     {streamData.side_title || "Título lateral"}
 
@@ -724,7 +800,19 @@ export default function AdminLivestream() {
                     href={streamData.youtube_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-block bg-yellow-500 hover:bg-yellow-400 text-black px-10 py-5 rounded-2xl font-bold transition duration-300 text-lg"
+                    className="
+inline-block
+bg-black
+hover:bg-[#1c1c1e]
+text-white
+px-10
+py-5
+rounded-2xl
+font-semibold
+transition
+duration-300
+text-lg
+" px-10 py-5 rounded-2xl font-bold transition duration-300 text-lg
                   >
 
                     {streamData.button_text || "Ver Canal"}

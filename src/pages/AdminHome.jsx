@@ -72,48 +72,16 @@ export default function AdminHome() {
 
     <PageWrapper>
 
-      <section className="bg-black min-h-screen text-white overflow-hidden">
+      <section className="
+      min-h-screen
+      bg-[#f5f5f7]
+      text-[#111111]
+      overflow-hidden
+     ">
 
         {/* BACKGROUND GLOW */}
 
-        <div className="fixed inset-0 overflow-hidden pointer-events-none">
-
-          <motion.div
-
-            initial={{
-              opacity: 0
-            }}
-
-            animate={{
-              opacity: 1
-            }}
-
-            transition={{
-              duration: 1.2
-            }}
-
-            className="absolute top-[-200px] left-[-100px] w-[500px] h-[500px] bg-yellow-500/10 blur-[160px] rounded-full"
-          ></motion.div>
-
-          <motion.div
-
-            initial={{
-              opacity: 0
-            }}
-
-            animate={{
-              opacity: 1
-            }}
-
-            transition={{
-              duration: 1.2,
-              delay: 0.2
-            }}
-
-            className="absolute bottom-[-200px] right-[-100px] w-[500px] h-[500px] bg-yellow-500/10 blur-[160px] rounded-full"
-          ></motion.div>
-
-        </div>
+        
 
 
         {/* HERO */}
@@ -138,22 +106,30 @@ export default function AdminHome() {
         >
           <div className="max-w-3xl">
 
-            <p className="uppercase tracking-[6px] text-yellow-400 mb-8">
+            <p className="
+            uppercase
+            tracking-[5px]
+            text-zinc-400
+            mb-6
+            text-sm
+            font-medium
+            ">
               PANEL CMS
             </p>
 
             <h1 className="
-              text-5xl
-              md:text-7xl
-              font-black
-              leading-[1]
-              max-w-4xl
-              mb-16
+            text-5xl
+            md:text-6xl
+            font-semibold
+            tracking-tight
+            leading-[0.95]
+            max-w-4xl
+            mb-12
             ">
 
               Controla toda tu iglesia
               <br />
-              desde un solo lugar.
+              de forma simple.
 
             </h1>
 
@@ -206,22 +182,23 @@ export default function AdminHome() {
                   }}
 
                   className="
-                    bg-white/5
-                    border border-white/10
+                    bg-white
+                   border border-zinc-200
+                   shadow-sm
                     rounded-3xl
                     p-8
                     backdrop-blur-xl
                     transition-all duration-300
-                    hover:border-yellow-500/30
-                    hover:bg-white/10
+                    hover:shadow-md
+                    hover:border-zinc-300
                   "
                 >
 
-                  <p className="text-white/40 text-sm mb-4 uppercase tracking-[3px]">
+                  <p className="text-zinc-400 text-sm mb-4 uppercase tracking-[3px]">
                     {item.category}
                   </p>
 
-                  <h3 className="text-xl font-black leading-tight">
+                  <h3 className="text-xl font-semibold tracking-tight leading-tight">
                     {item.title}
                   </h3>
 
@@ -274,30 +251,17 @@ export default function AdminHome() {
                   group
                   relative
                   overflow-hidden
-                  bg-white/[0.03]
-                  border border-white/10
+                  bg-white
+                  border border-zinc-200
+                  shadow-sm
                   rounded-3xl
                   p-8
                   cursor-pointer
                   transition-all duration-500
-                  hover:border-yellow-500/30
-                  hover:bg-white/[0.06]
-                  hover:shadow-2xl
-                  hover:shadow-black/30
+                  hover:shadow-lg
+                  hover:border-zinc-300
                 "
               >
-
-                {/* Glow */}
-
-                <div className="
-                  absolute inset-0 opacity-0
-                  group-hover:opacity-100
-                  transition-all duration-500
-                  bg-gradient-to-br
-                  from-yellow-500/10
-                  via-transparent
-                  to-transparent
-                "></div>
 
                 {/* Icon */}
 
@@ -312,16 +276,15 @@ export default function AdminHome() {
                     w-20 h-20
                     rounded-3xl
                     bg-gradient-to-br
-                    from-yellow-500/20
-                    to-yellow-500/5
+                    from-zinc-100
+                    to-zinc-50
                     flex items-center justify-center
-                    text-4xl
+                    text-3xl
                     mb-8
                     shadow-lg
-                    shadow-yellow-500/10
+                    shadow-zinc-200
                     transition-all duration-300
                     group-hover:scale-110
-                    group-hover:bg-yellow-500
                   "
                 >
 
@@ -337,17 +300,17 @@ export default function AdminHome() {
 
                   <h2
                  className="
-                 text-3xl
-                 font-black
-                 mb-4
-                 min-h-[80px]
+                 text-2xl
+                 font-semibold
+                 tracking-tight
+                 mb-3
                  leading-tight
                  "
         >
   {card.title}
 </h2>
 
-                  <p className="text-white/60 leading-relaxed">
+                  <p className="text-zinc-500 leading-relaxed">
                     {card.description}
                   </p>
 

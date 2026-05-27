@@ -285,7 +285,7 @@ setTimeout(() => {
 
     <PageWrapper>
 
-      <section className="bg-black min-h-screen text-white">
+      <section className="bg-[#f5f5f7] min-h-screen text-[#111111]">
 
         {successMessage && (
 
@@ -311,13 +311,13 @@ setTimeout(() => {
       left-1/2
       -translate-x-1/2
       z-[999]
-      bg-green-500
-      text-black
+      bg-black
+      text-white
       px-8
       py-5
       rounded-2xl
-      font-bold
-      shadow-2xl
+      font-semibold
+      shadow-lg
     "
   >
 
@@ -333,18 +333,18 @@ setTimeout(() => {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="border-b border-white/10"
+          className="border-b border-[#e5e5e5]"
         >
 
           <div className="max-w-7xl mx-auto px-6 py-8 flex items-center justify-between">
 
             <div>
 
-              <p className="uppercase tracking-[5px] text-yellow-400 text-sm mb-2">
+              <p className="uppercase tracking-[5px] text-[#8e8e93] text-sm mb-2">
                 CMS
               </p>
 
-              <h1 className="text-5xl font-black">
+              <h1 className="text-5xl font-semibold tracking-[-2px]">
                 Flyers
               </h1>
 
@@ -355,14 +355,14 @@ setTimeout(() => {
               <button
                 onClick={() => navigate("/admin")}
                 className="
-                  bg-white/10
-                  border border-white/10
+                  bg-white
+                  border border-[#dcdcdc]
                   px-5 py-3
                   rounded-2xl
                   transition-all duration-300
-                  hover:bg-white
-                  hover:text-black
-                  hover:scale-105
+                  text-[#111111]
+                  hover:bg-[#f2f2f2]
+                  shadow-sm
                 "
               >
 
@@ -379,15 +379,14 @@ setTimeout(() => {
 
                 }}
                 className="
-                  bg-yellow-500
-                  text-black
+                  bg-black
+                  text-white
                   px-5 py-3
                   rounded-2xl
-                  font-bold
+                  font-semibold
                   transition-all duration-300
-                  hover:scale-105
-                  hover:shadow-xl
-                  hover:shadow-yellow-500/30
+                  hover:bg-[#1c1c1e]
+                  shadow-sm
                 "
               >
 
@@ -426,16 +425,14 @@ setTimeout(() => {
           >
 
             <div className="
-              bg-white/5
-              border border-white/10
-              rounded-[2rem]
-              p-10
-              backdrop-blur-xl
-              shadow-2xl
-              shadow-black/30
+             bg-white
+             border border-[#e5e5e5]
+             rounded-[32px]
+             p-10
+             shadow-sm
             ">
 
-              <h2 className="text-4xl font-black mb-10">
+              <h2 className="text-4xl font-semibold tracking-[-1px] mb-10">
 
                 {editingFlyer
                   ? "Editar Flyer"
@@ -451,14 +448,15 @@ setTimeout(() => {
                   value={titulo}
                   onChange={(e) => setTitulo(e.target.value)}
                   className="
-                    bg-black/40
-                    border border-white/10
+                    bg-[#f7f7f7]
+                   border border-[#dcdcdc]
+                   text-[#111111]
                     rounded-2xl
                     p-5
                     outline-none
                     transition-all
                     duration-300
-                    focus:border-yellow-400
+                    focus:border-[#bdbdbd]
                   "
                 />
 
@@ -468,14 +466,14 @@ setTimeout(() => {
                   value={dia}
                   onChange={(e) => setDia(e.target.value)}
                   className="
-                    bg-black/40
-                    border border-white/10
+                    bg-[#f7f7f7]
+                    border border-[#dcdcdc]
                     rounded-2xl
                     p-5
                     outline-none
                     transition-all
                     duration-300
-                    focus:border-yellow-400
+                    focus:border-[#bdbdbd]
                   "
                 />
 
@@ -485,14 +483,14 @@ setTimeout(() => {
                   value={hora}
                   onChange={(e) => setHora(e.target.value)}
                   className="
-                    bg-black/40
-                    border border-white/10
+                    bg-[#f7f7f7]
+                    border border-[#dcdcdc]
                     rounded-2xl
                     p-5
                     outline-none
                     transition-all
                     duration-300
-                    focus:border-yellow-400
+                    focus:border-[#bdbdbd]
                   "
                 />
 
@@ -504,42 +502,43 @@ setTimeout(() => {
                     setOrden(Number(e.target.value))
                   }
                   className="
-                    bg-black/40
-                    border border-white/10
+                    bg-[#f7f7f7]
+                    border border-[#dcdcdc]
                     rounded-2xl
                     p-5
                     outline-none
                     transition-all
                     duration-300
-                    focus:border-yellow-400
+                    focus:border-[#bdbdbd]
                   "
                 />
 
                 <label
                   className="
                     md:col-span-2
-                    bg-black/40
-                    border border-dashed border-white/10
+                    bg-[#f7f7f7]
+                   border border-dashed border-[#dcdcdc]
+                   text-[#111111]
                     rounded-2xl
                     p-10
                     cursor-pointer
                     flex flex-col items-center justify-center
-                    text-gray-400
+                    text-[#6e6e73]
                     transition-all duration-300
-                    hover:border-yellow-400
-                    hover:bg-white/[0.03]
+                    hover:border-[#bdbdbd]
+                    hover:bg-[#fafafa]
                   "
                 >
 
-                  <div className="text-5xl mb-4">
+                  <div className="text-4xl mb-4">
                     🖼️
                   </div>
 
-                  <p className="text-xl font-bold mb-2">
+                  <p className="text-lg font-semibold mb-2">
                     Cambiar Imagen
                   </p>
 
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-[#6e6e73]">
                     JPG, PNG o WEBP
                   </p>
 
@@ -579,7 +578,8 @@ setTimeout(() => {
                     max-h-[500px]
                     object-cover
                     rounded-3xl
-                    border border-white/10
+                    border border-[#e5e5e5]
+                    shadow-sm
                   "
                 />
 
@@ -592,15 +592,15 @@ setTimeout(() => {
                 className="
                   w-full
                   mt-6
-                  bg-black/40
-                  border border-white/10
+                  bg-[#f7f7f7]
+                  border border-[#dcdcdc]
                   rounded-2xl
                   p-5
                   outline-none
                   min-h-[150px]
                   transition-all
                   duration-300
-                  focus:border-yellow-400
+                  focus:border-[#bdbdbd]
                 "
               />
 
@@ -608,15 +608,14 @@ setTimeout(() => {
                 onClick={handleSaveFlyer}
                 className="
                   mt-8
-                  bg-yellow-500
-                  text-black
+                  bg-black
+                  text-white
                   px-8 py-4
                   rounded-2xl
-                  font-black
+                  font-semibold
                   transition-all duration-300
-                  hover:scale-105
-                  hover:shadow-xl
-                  hover:shadow-yellow-500/30
+                  hover:bg-[#1c1c1e]
+                  shadow-sm
                 "
               >
 
@@ -662,17 +661,17 @@ setTimeout(() => {
                   delay: index * 0.08
                 }}
 
-                whileHover={{
-                  y: -8,
-                  scale: 1.02
-                }}
+               whileHover={{
+                 y: -4
+                 }}
 
                 className="
                   bg-white
-                  text-black
-                  rounded-[2rem]
-                  overflow-hidden
-                  shadow-2xl
+                 text-[#111111]
+                 rounded-[32px]
+                 overflow-hidden
+                 border border-[#e5e5e5]
+                 shadow-sm
                   transition-all duration-300
                 "
               >
@@ -682,30 +681,30 @@ setTimeout(() => {
                   alt={flyer.titulo}
                   className="
                     w-full
-                    h-[500px]
+                    h-[420px]
                     object-cover
                   "
                 />
 
                 <div className="p-8">
 
-                  <p className="uppercase tracking-[4px] text-yellow-500 text-sm mb-4 font-bold">
+                  <p className="uppercase tracking-[4px] text-[#8e8e93] font-medium text-sm mb-4 font-semibold">
                     {flyer.dia}
                   </p>
 
-                  <h2 className="text-4xl font-black mb-4 leading-tight">
+                  <h2 className="text-3xl font-semibold tracking-[-1px] mb-4 leading-tight">
                     {flyer.titulo}
                   </h2>
 
-                  <p className="text-gray-500 text-xl mb-4">
+                  <p className="text-[#6e6e73] text-lg mb-4">
                     {flyer.hora}
                   </p>
 
-                  <p className="text-sm text-gray-400 mb-6">
+                  <p className="text-sm text-[#8e8e93] mb-6">
                     Orden: {flyer.orden}
                   </p>
 
-                  <p className="text-gray-600 leading-relaxed mb-8">
+                  <p className="text-[#6e6e73] leading-relaxed mb-8">
                     {flyer.descripcion}
                   </p>
 
@@ -719,11 +718,10 @@ setTimeout(() => {
                         text-white
                         py-4
                         rounded-2xl
-                        font-bold
-                        hover:bg-yellow-500
-                        hover:text-black
+                        font-semibold
+                        hover:bg-[#1c1c1e]
                         transition-all duration-300
-                        hover:scale-105
+                        hover:opacity-90
                       "
                     >
 
@@ -734,14 +732,14 @@ setTimeout(() => {
                     <button
                       onClick={() => handleDelete(flyer.id)}
                       className="
-                        bg-red-500
+                        bg-[#ff3b30]
                         text-white
                         px-6
                         rounded-2xl
-                        font-bold
+                        font-semibold
                         transition-all duration-300
-                        hover:bg-red-400
-                        hover:scale-105
+                        hover:bg-[#ff453a]
+                        hover:opacity-90
                       "
                     >
 

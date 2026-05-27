@@ -117,7 +117,7 @@ export default function AdminConfiguracion() {
 
   return (
 
-    <section className="min-h-screen bg-black text-white px-6 py-16">
+    <section className="min-h-screen bg-[#f5f5f7] text-[#111111] px-6 py-16">
 
       <div className="max-w-5xl mx-auto">
 
@@ -127,13 +127,13 @@ export default function AdminConfiguracion() {
           transition={{ duration: 0.7 }}
         >
 
-          <p className="uppercase tracking-[5px] text-yellow-400 mb-4">
+          <p className="uppercase tracking-[5px] text-zinc-400 mb-4">
 
             CMS
 
           </p>
 
-          <h1 className="text-5xl font-black mb-10">
+          <h1 className="text-5xl font-semibold tracking-tight mb-10">
 
             Configuración
 
@@ -144,14 +144,16 @@ export default function AdminConfiguracion() {
             <button
               onClick={() => navigate("/admin")}
               className="
-                bg-white/10
-                hover:bg-white/20
-                border border-white/10
-                px-6 py-4
-                rounded-2xl
-                font-semibold
-                transition-all duration-300
-              "
+              bg-white
+              hover:bg-zinc-100
+              border border-zinc-200
+              text-zinc-700
+              px-6 py-4
+              rounded-2xl
+              font-medium
+              transition-all duration-300
+               shadow-sm
+"
             >
 
               ← Volver al Dashboard
@@ -162,14 +164,15 @@ export default function AdminConfiguracion() {
               onClick={saveSettings}
               disabled={saving}
               className="
-                bg-yellow-500
-                hover:bg-yellow-400
-                text-black
-                px-6 py-4
-                rounded-2xl
-                font-bold
-                transition-all duration-300
-                disabled:opacity-50
+              bg-black
+              hover:bg-zinc-800
+              text-white
+              px-6 py-4
+              rounded-2xl
+              font-semibold
+              transition-all duration-300
+              shadow-sm
+              disabled:opacity-50
               "
             >
 
@@ -188,14 +191,15 @@ export default function AdminConfiguracion() {
         {settings && (
 
           <div className="
-            bg-white/5
-            border border-white/10
+            bg-white
+            border border-zinc-200
+            shadow-sm
             rounded-3xl
             p-8
             grid gap-6
           ">
 
-            <p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+            <p className="text-zinc-500 uppercase tracking-[3px] mb-3">
 
             Nombre Iglesia
 
@@ -212,14 +216,19 @@ export default function AdminConfiguracion() {
               }
               placeholder="Nombre Iglesia"
               className="
-                bg-black
-                border border-white/10
-                rounded-2xl
-                px-5 py-4
-              "
+               bg-[#f8f8f8]
+               border border-zinc-200
+               rounded-2xl
+               px-5 py-4
+               text-[#111111]
+               focus:outline-none
+               focus:ring-2
+               focus:ring-black/5
+"
+              
             />
 
-            <p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+            <p className="text-zinc-500 uppercase tracking-[3px] mb-3">
 
               Dirección
 
@@ -236,14 +245,18 @@ export default function AdminConfiguracion() {
               }
               placeholder="Dirección"
               className="
-                bg-black
-                border border-white/10
-                rounded-2xl
-                px-5 py-4
-              "
+                bg-[#f8f8f8]
+               border border-zinc-200
+               rounded-2xl
+               px-5 py-4
+               text-[#111111]
+               focus:outline-none
+               focus:ring-2
+               focus:ring-black/5
+"
             />
 
-            <p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+            <p className="text-zinc-500 uppercase tracking-[3px] mb-3">
 
             Ciudad
 
@@ -260,14 +273,18 @@ export default function AdminConfiguracion() {
               }
               placeholder="Ciudad"
               className="
-                bg-black
-                border border-white/10
-                rounded-2xl
-                px-5 py-4
-              "
+                bg-[#f8f8f8]
+               border border-zinc-200
+               rounded-2xl
+               px-5 py-4
+               text-[#111111]
+               focus:outline-none
+               focus:ring-2
+               focus:ring-black/5
+"
             />
 
-            <p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+            <p className="text-zinc-500 uppercase tracking-[3px] mb-3">
 
               Link Google Maps
 
@@ -284,14 +301,18 @@ export default function AdminConfiguracion() {
               }
               placeholder="Link Google Maps"
               className="
-                bg-black
-                border border-white/10
+                bg-[#f8f8f8]
+                border border-zinc-200
                 rounded-2xl
                 px-5 py-4
+                text-[#111111]
+                focus:outline-none
+                focus:ring-2
+                focus:ring-black/5
               "
             />
 
-            <p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+            <p className="text-zinc-500 uppercase tracking-[3px] mb-3">
 
               Embed Google Maps
 
@@ -307,15 +328,18 @@ export default function AdminConfiguracion() {
               }
               placeholder="Google Maps Embed"
               className="
-                bg-black
-                border border-white/10
-                rounded-2xl
-                px-5 py-4
-                min-h-[180px]
-              "
+                bg-[#f8f8f8]
+               border border-zinc-200
+               rounded-2xl
+               px-5 py-4
+               text-[#111111]
+               focus:outline-none
+               focus:ring-2
+               focus:ring-black/5
+"
             />
 
-            <p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+            <p className="text-zinc-500 uppercase tracking-[3px] mb-3">
 
   Nombre Corto Iglesia
 
@@ -332,14 +356,18 @@ export default function AdminConfiguracion() {
   }
   placeholder="Nombre Corto"
   className="
-    bg-black
-    border border-white/10
-    rounded-2xl
-    px-5 py-4
-  "
+   bg-[#f8f8f8]
+   border border-zinc-200
+   rounded-2xl
+   px-5 py-4
+   text-[#111111]
+   focus:outline-none
+   focus:ring-2
+   focus:ring-black/5
+"
 />
 
-<p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+<p className="text-zinc-500 uppercase tracking-[3px] mb-3">
 
   Color Primario
 
@@ -356,14 +384,18 @@ export default function AdminConfiguracion() {
   }
   placeholder="#eab308"
   className="
-    bg-black
-    border border-white/10
-    rounded-2xl
-    px-5 py-4
-  "
+    bg-[#f8f8f8]
+               border border-zinc-200
+               rounded-2xl
+               px-5 py-4
+               text-[#111111]
+               focus:outline-none
+               focus:ring-2
+               focus:ring-black/5
+"
 />
 
-<p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+<p className="text-zinc-500 uppercase tracking-[3px] mb-3">
 
   Color Secundario
 
@@ -380,14 +412,18 @@ export default function AdminConfiguracion() {
   }
   placeholder="#000000"
   className="
-    bg-black
-    border border-white/10
-    rounded-2xl
-    px-5 py-4
+    bg-[#f8f8f8]
+               border border-zinc-200
+               rounded-2xl
+               px-5 py-4
+               text-[#111111]
+               focus:outline-none
+               focus:ring-2
+               focus:ring-black/5
   "
 />
 
-<p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+<p className="text-zinc-500 uppercase tracking-[3px] mb-3">
 
   Logo Admin CMS
 
@@ -399,9 +435,9 @@ export default function AdminConfiguracion() {
 
     <div className="mt-6">
 
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-start gap-6 mb-6">
 
-        <p className="text-white font-bold">
+        <p className="text-[#111111] font-semibold">
 
           Preview Logo Admin
 
@@ -426,13 +462,15 @@ export default function AdminConfiguracion() {
 
   }}
   className="
-    bg-red-500 hover:bg-red-400
-    text-white
-    px-5 py-2
-    rounded-xl
-    font-bold
-    transition-all duration-300
-  "
+  bg-red-500
+  hover:bg-red-400
+  text-white
+  px-4 py-2
+  rounded-xl
+  font-medium
+  transition-all duration-300
+  shadow-sm
+"
 >
 
   Deseleccionar
@@ -442,43 +480,45 @@ export default function AdminConfiguracion() {
       </div>
 
       <img
-        src={logoPreview || settings.logo_url}
-        alt="Logo"
-        className="
-          w-40
-          h-auto
-          rounded-2xl
-          border border-white/10
-          p-3
-          bg-white
-        "
-      />
+  src={logoPreview || settings.logo_url}
+  alt="Logo"
+  className="
+    w-28
+    h-28
+    object-cover
+    rounded-2xl
+    border border-zinc-200
+    shadow-sm
+    p-2
+    bg-white
+  "
+/>
 
     </div>
 
   )
 }
 
-<p className="text-yellow-400 uppercase tracking-[3px] mb-3 mt-10">
+<p className="text-zinc-500 uppercase tracking-[3px] mb-3 mt-10">
 
-  
+  Subir Logo Admin CMS
 
 </p>
 
 <label
   className="
-    border border-dashed border-white/10
-    rounded-[30px]
-    p-10
-    flex flex-col
-    items-center justify-center
-    text-center
-    cursor-pointer
-    hover:border-yellow-400/40
-    hover:bg-white/[0.02]
-    transition-all duration-300
-    bg-black/40
-  "
+border border-dashed border-zinc-300
+rounded-[30px]
+p-10
+flex flex-col
+items-center justify-center
+text-center
+cursor-pointer
+hover:border-zinc-400
+hover:bg-zinc-50
+transition-all duration-300
+bg-[#fafafa]
+"
 >
 
   <input
@@ -503,13 +543,13 @@ export default function AdminConfiguracion() {
 }}
   />
 
-  <div className="text-5xl mb-4">
+  <div className="text-4xl mb-4">
 
     🖼️
 
   </div>
 
-  <h3 className="text-2xl font-black mb-2">
+  <h3 className="text-2xl font-semibold tracking-tight mb-2">
 
     Subir Logo Admin CMS
 
@@ -523,9 +563,9 @@ export default function AdminConfiguracion() {
 
 </label>
 
-<p className="text-yellow-400 uppercase tracking-[3px] mb-3">
+<p className="text-zinc-500 uppercase tracking-[3px] mb-3">
 
-  Favicon Iglesia
+  Subir Favicon (Icono del sitio)
 
 </p>
 
@@ -534,9 +574,9 @@ export default function AdminConfiguracion() {
 
     <div className="mt-6">
 
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-start gap-6 mb-6">
 
-        <p className="text-white font-bold">
+        <p className="text-[#111111] font-semibold">
 
           Preview Favicon
 
@@ -580,10 +620,12 @@ export default function AdminConfiguracion() {
         src={faviconPreview || settings.favicon_url}
         alt="Favicon"
         className="
-          w-20
-          h-20
+        w-28
+        h-28
+        object-cover
           rounded-2xl
-          border border-white/10
+          border border-zinc-200
+          shadow-sm
           p-2
           bg-white
         "
@@ -596,18 +638,18 @@ export default function AdminConfiguracion() {
 
 <label
   className="
-    border border-dashed border-white/10
-    rounded-[30px]
-    p-10
-    flex flex-col
-    items-center justify-center
-    text-center
-    cursor-pointer
-    hover:border-yellow-400/40
-    hover:bg-white/[0.02]
-    transition-all duration-300
-    bg-black/40
-  "
+border border-dashed border-zinc-300
+rounded-[30px]
+p-10
+flex flex-col
+items-center justify-center
+text-center
+cursor-pointer
+hover:border-zinc-400
+hover:bg-zinc-50
+transition-all duration-300
+bg-[#fafafa]
+"
 >
 
   <input
@@ -632,13 +674,13 @@ export default function AdminConfiguracion() {
 }}
   />
 
-  <div className="text-5xl mb-4">
+  <div className="text-4xl mb-4">
 
     🌐
 
   </div>
 
-  <h3 className="text-2xl font-black mb-2">
+  <h3 className="text-2xl font-semibold tracking-tight mb-2">
 
     Subir Favicon
 

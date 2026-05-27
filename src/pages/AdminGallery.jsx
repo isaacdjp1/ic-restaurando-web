@@ -226,7 +226,7 @@ export default function AdminGallery() {
 
     <PageWrapper>
 
-      <section className="min-h-screen bg-black text-white px-6 py-20">
+      <section className="min-h-screen bg-[#f5f5f7] text-[#111111] px-6 py-16">
 
         <div className="max-w-7xl mx-auto">
 
@@ -252,13 +252,13 @@ export default function AdminGallery() {
 
             <div>
 
-              <p className="uppercase tracking-[8px] text-yellow-400 mb-4 text-sm">
+              <p className="uppercase tracking-[6px] text-[#8e8e93] mb-3 text-sm font-medium">
 
                 Gallery CMS
 
               </p>
 
-              <h1 className="text-5xl lg:text-7xl font-black leading-none mb-6">
+              <h1 className="text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-[-2px] mb-5">
 
                 Admin
                 <br />
@@ -266,7 +266,7 @@ export default function AdminGallery() {
 
               </h1>
 
-              <p className="text-gray-500 text-xl max-w-2xl leading-relaxed">
+              <p className="text-[#6e6e73] text-lg max-w-2xl leading-relaxed">
 
                 Gestiona imágenes, previews y contenido visual
                 dinámico de la iglesia.
@@ -278,11 +278,14 @@ export default function AdminGallery() {
             <Link
               to="/admin"
               className="
-                bg-white text-black
-                px-10 py-5 rounded-[28px]
-                font-bold text-xl
-                hover:scale-105
-                hover:bg-yellow-400
+                bg-white
+               text-[#111111]
+               px-8 py-4
+              rounded-2xl
+              font-medium
+              border border-[#dcdcdc]
+              hover:bg-[#f2f2f2]
+              shadow-sm
                 transition-all duration-300
                 w-fit
               "
@@ -315,17 +318,16 @@ export default function AdminGallery() {
             }}
 
             className="
-              bg-[#080808]
-              border border-white/10
-              rounded-[40px]
-              p-8
-              mb-20
-              shadow-2xl
-              shadow-black/30
+              bg-white
+              border border-[#e5e5e5]
+              rounded-[32px]
+              p-10
+              mb-16
+              shadow-[0_4px_20px_rgba(0,0,0,0.04)]
             "
           >
 
-            <p className="uppercase tracking-[6px] text-yellow-400 text-sm mb-8">
+            <p className="uppercase tracking-[6px] text-[#8e8e93] text-sm mb-8">
 
               Upload Images
 
@@ -335,7 +337,7 @@ export default function AdminGallery() {
 
             <div className="mb-10">
 
-              <p className="uppercase tracking-[5px] text-yellow-400 text-sm mb-4">
+              <p className="uppercase tracking-[5px] text-[#8e8e93] text-sm mb-4">
 
                 Seleccionar Slot
 
@@ -347,11 +349,12 @@ export default function AdminGallery() {
                   setSelectedPosition(Number(e.target.value))
                 }
                 className="
-                  bg-black
-                  border border-white/10
-                  rounded-2xl
-                  px-6 py-5
-                  text-white text-lg
+                 bg-[#f7f7f7]
+                border border-[#dcdcdc]
+                rounded-2xl
+                px-6 py-4
+                text-[#111111]
+                text-lg
                   w-full max-w-md
                   transition-all duration-300
                   focus:border-yellow-400
@@ -379,17 +382,17 @@ export default function AdminGallery() {
 
             <label
               className="
-                border border-dashed border-white/10
+                border border-dashed border-[#dcdcdc]
                 rounded-[35px]
                 p-16
                 flex flex-col
                 items-center justify-center
                 text-center
                 cursor-pointer
-                hover:border-yellow-400/40
-                hover:bg-white/[0.02]
+                hover:border-[#bdbdbd]
+                hover:bg-[#fafafa]
                 transition-all duration-300
-                bg-black/40
+                bg-[#fcfcfc]
               "
             >
 
@@ -426,7 +429,7 @@ export default function AdminGallery() {
 
               </motion.div>
 
-              <h3 className="text-4xl font-black mb-4">
+              <h3 className="text-3xl font-semibold mb-3 tracking-[-1px]">
 
                 Subir Imagen
 
@@ -467,13 +470,13 @@ export default function AdminGallery() {
 
                   <div>
 
-                    <p className="uppercase tracking-[5px] text-yellow-400 text-sm mb-2">
+                    <p className="uppercase tracking-[5px] text-[#8e8e93] text-sm mb-2">
 
                       Preview
 
                     </p>
 
-                    <h3 className="text-3xl font-black">
+                    <h3 className="text-2xl font-semibold tracking-[-1px]">
 
                       Imagen Seleccionada
 
@@ -523,7 +526,8 @@ export default function AdminGallery() {
                     h-[420px]
                     object-cover
                     rounded-[35px]
-                    border border-white/10
+                    border border-[#e5e5e5]
+                    shadow-sm
                   "
                 />
 
@@ -539,16 +543,15 @@ export default function AdminGallery() {
                 onClick={handleUpload}
                 disabled={uploading}
                 className="
-                  bg-yellow-500 hover:bg-yellow-400
-                  text-black
+                 bg-black hover:bg-[#1c1c1e]
+                 text-white
                   px-12 py-5
                   rounded-[24px]
-                  font-black text-xl
+                  font-semibold text-lg
                   transition-all duration-300
                   disabled:opacity-50
                   hover:scale-105
                   hover:shadow-xl
-                  hover:shadow-yellow-500/30
                 "
               >
 
@@ -603,7 +606,7 @@ export default function AdminGallery() {
             className="mb-10"
           >
 
-            <p className="uppercase tracking-[6px] text-yellow-400 text-sm mb-4">
+            <p className="uppercase tracking-[6px] text-[#8e8e93] text-sm mb-4">
 
               Gallery Preview
 
@@ -656,15 +659,15 @@ export default function AdminGallery() {
                 }}
 
                 className="
-                  bg-[#080808]
-                  border border-white/10
-                  rounded-[35px]
+                  bg-white
+                  border border-[#e5e5e5]
+                  rounded-[30px]
+                  shadow-sm
                   overflow-hidden
                   group
                   transition-all duration-300
-                  hover:border-white/20
-                  hover:shadow-2xl
-                  hover:shadow-black/30
+                  hover:border-[#d1d1d1]
+                  hover:shadow-md
                 "
               >
 
@@ -684,14 +687,15 @@ export default function AdminGallery() {
 
                   <div className="
                     absolute top-4 left-4
-                    bg-black/70
+                    bg-white/90
                     backdrop-blur-md
                     px-4 py-2
                     rounded-full
-                    border border-white/10
+                    border border-[#e5e5e5]
+                    shadow-sm
                   ">
 
-                    <p className="text-sm font-bold text-yellow-400">
+                    <p className="text-sm font-bold text-[#8e8e93]">
 
                       Slot #{image.position}
 
