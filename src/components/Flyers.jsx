@@ -54,7 +54,7 @@ export default function Flyers() {
             Eventos
           </p>
 
-          <h2 className="text-5xl font-black mb-6">
+          <h2 className="text-5xl md:text-6xl font-semibold tracking-[-2px] text-black mb-6">
             Próximos Servicios
           </h2>
 
@@ -101,11 +101,11 @@ export default function Flyers() {
                     {flyer.dia}
                   </p>
 
-                  <h3 className="text-2xl md:text-3xl font-black leading-tight mb-4">
+                  <h3 className="text-2xl md:text-3xl font-semibold text-black leading-tight mb-4">
                     {flyer.titulo}
                   </h3>
 
-                  <p className="text-gray-600 text-lg mb-8">
+                  <p className="text-[#4b5563] text-lg mb-8">
                     {flyer.hora}
                   </p>
 

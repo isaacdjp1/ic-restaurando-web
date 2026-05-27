@@ -161,7 +161,7 @@ export default function PrayerForm() {
 
     <section
       id="oracion"
-      className="bg-gradient-to-br from-yellow-400 to-yellow-600 py-24 px-6"
+      className="bg-[#f5f5f7] py-24 px-6"
     >
 
       <div className="max-w-5xl mx-auto bg-white rounded-[40px] shadow-2xl p-10 md:p-16">
@@ -172,7 +172,7 @@ export default function PrayerForm() {
             Peticiones
           </p>
 
-          <h2 className="text-5xl font-black mb-6">
+          <h2 className="text-5xl md:text-6xl font-semibold tracking-[-2px] text-black mb-6">
             ¿Necesitas oración?
           </h2>
 
@@ -195,7 +195,18 @@ export default function PrayerForm() {
               placeholder="Nombre"
               value={formData.nombre}
               onChange={handleChange}
-              className="bg-gray-100 rounded-2xl p-4 outline-none w-full"
+              className="
+              bg-[#f5f5f7]
+              border border-[#e5e5e7]
+              rounded-2xl
+              p-4
+              outline-none
+              w-full
+              text-black
+              placeholder:text-[#9ca3af]
+             focus:border-black
+             transition-all
+"
             />
 
             {errors.nombre && (
@@ -214,7 +225,18 @@ export default function PrayerForm() {
               placeholder="Correo Electrónico"
               value={formData.correo}
               onChange={handleChange}
-              className="bg-gray-100 rounded-2xl p-4 outline-none w-full"
+              className="
+              bg-[#f5f5f7]
+              border border-[#e5e5e7]
+              rounded-2xl
+              p-4
+              outline-none
+              w-full
+              text-black
+              placeholder:text-[#9ca3af]
+             focus:border-black
+             transition-all
+"
             />
 
             {errors.correo && (
@@ -233,7 +255,18 @@ export default function PrayerForm() {
               placeholder="Teléfono"
               value={formData.telefono}
               onChange={handleChange}
-              className="bg-gray-100 rounded-2xl p-4 outline-none w-full"
+              className="
+              bg-[#f5f5f7]
+              border border-[#e5e5e7]
+              rounded-2xl
+              p-4
+              outline-none
+              w-full
+              text-black
+              placeholder:text-[#9ca3af]
+             focus:border-black
+             transition-all
+"
             />
 
             {errors.telefono && (
@@ -253,7 +286,19 @@ export default function PrayerForm() {
               value={formData.mensaje}
               onChange={handleChange}
               maxLength={300}
-              className="bg-gray-100 rounded-2xl p-4 outline-none w-full"
+
+              className="
+              bg-[#f5f5f7]
+              border border-[#e5e5e7]
+              rounded-2xl
+              p-4
+              outline-none
+              w-full
+              text-black
+              placeholder:text-[#9ca3af]
+             focus:border-black
+             transition-all
+"
             ></textarea>
 
             <div className="flex justify-between mt-2">
@@ -277,7 +322,17 @@ export default function PrayerForm() {
           <button
             type="submit"
             disabled={loading}
-            className="bg-black text-white py-4 rounded-2xl hover:bg-yellow-500 hover:text-black transition md:col-span-2"
+            className="
+            bg-black
+            text-white
+           py-4
+           rounded-2xl
+          hover:opacity-90
+          transition-all duration-300
+          font-semibold
+          shadow-lg
+          md:col-span-2
+"
           >
 
             {loading ? "Enviando..." : "Enviar Petición"}
