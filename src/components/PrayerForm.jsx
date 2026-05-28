@@ -92,20 +92,23 @@ export default function PrayerForm() {
 
       // GUARDAR EN SUPABASE
 
-      const { data, error } = await supabase
-        .from("peticiones")
-        .insert([
-          {
-            nombre: formData.nombre,
-            email: formData.correo,
-            telefono: formData.telefono,
-            mensaje: formData.mensaje,
-            estado: "Pendiente",
-          },
-        ])
-        .select()
+      const { error } = await supabase
+     .from("peticiones")
+     .insert(
+    [
+      {
+        nombre: formData.nombre,
+        email: formData.correo,
+        telefono: formData.telefono,
+        mensaje: formData.mensaje,
+        estado: "Pendiente",
+      },
+    ],
+    {
+      returning: "minimal",
+    }
+  )
 
-      console.log("SUPABASE DATA:", data)
       console.log("SUPABASE ERROR:", error)
 
       if (error) {

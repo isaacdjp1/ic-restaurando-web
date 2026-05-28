@@ -1,10 +1,21 @@
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import { supabase } from "../lib/supabase"
 import PageWrapper from "../components/PageWrapper"
 
 export default function AdminHome() {
 
   const navigate = useNavigate()
+
+  const [stats, setStats] = useState({
+
+  flyers: 0,
+  peticiones: 0,
+  galeria: 0,
+  livestream: 0
+
+})
 
   const cards = [
 
@@ -66,6 +77,67 @@ export default function AdminHome() {
 
   ]
 
+  useEffect(() => {
+
+  async function fetchStats() {
+
+    // Flyers
+
+    const {
+      count: flyersCount
+    } = await supabase
+      .from("flyers")
+      .select("*", {
+        count: "exact",
+        head: true
+      })
+
+    // Peticiones
+
+    const {
+      count: peticionesCount
+    } = await supabase
+      .from("peticiones")
+      .select("*", {
+        count: "exact",
+        head: true
+      })
+
+    // Galería
+
+    const {
+      count: galeriaCount
+    } = await supabase
+      .from("gallery")
+      .select("*", {
+        count: "exact",
+        head: true
+      })
+
+    // Livestream
+
+    const {
+      data: livestreamData
+    } = await supabase
+      .from("livestream")
+      .select("*")
+      .eq("is_live", true)
+
+    setStats({
+
+      flyers: flyersCount || 0,
+      peticiones: peticionesCount || 0,
+      galeria: galeriaCount || 0,
+      livestream: livestreamData?.length || 0
+
+    })
+
+  }
+
+  fetchStats()
+
+}, [])
+
 
 
   return (
@@ -80,6 +152,170 @@ export default function AdminHome() {
      ">
 
         {/* BACKGROUND GLOW */}
+
+        {/* TOP STATUS */}
+
+<div className="
+max-w-7xl
+mx-auto
+px-6
+pt-12
+relative
+z-10
+">
+
+  <motion.div
+
+    initial={{
+      opacity: 0,
+      y: 20
+    }}
+
+    animate={{
+      opacity: 1,
+      y: 0
+    }}
+
+    transition={{
+      duration: 0.6
+    }}
+
+    className="
+      bg-white
+      border border-zinc-200
+      rounded-[36px]
+      p-8
+      shadow-sm
+      flex flex-col xl:flex-row
+      xl:items-center
+      xl:justify-between
+      gap-10
+    "
+  >
+
+    {/* LEFT */}
+
+    <div>
+
+      <p className="
+      uppercase
+      tracking-[4px]
+      text-zinc-400
+      text-sm
+      mb-4
+      ">
+
+        VEYRON CMS
+
+      </p>
+
+      <h1 className="
+      text-4xl
+      md:text-5xl
+      font-semibold
+      tracking-tight
+      leading-tight
+      mb-4
+      ">
+
+        Bienvenido de nuevo 👋
+
+      </h1>
+
+      <p className="
+      text-zinc-500
+      text-lg
+      max-w-2xl
+      ">
+
+        Todo el control de tu iglesia en un solo lugar.
+
+      </p>
+
+    </div>
+
+    {/* RIGHT */}
+
+<div className="
+grid
+grid-cols-2
+gap-4
+min-w-[320px]
+">
+
+  <div className="
+  bg-[#f5f5f7]
+  rounded-3xl
+  p-5
+  border border-zinc-200
+  ">
+
+    <p className="text-zinc-400 text-sm mb-2">
+      Flyers
+    </p>
+
+    <h3 className="font-semibold text-2xl">
+      {stats.flyers}
+    </h3>
+
+  </div>
+
+  <div className="
+  bg-[#f5f5f7]
+  rounded-3xl
+  p-5
+  border border-zinc-200
+  ">
+
+    <p className="text-zinc-400 text-sm mb-2">
+      Peticiones
+    </p>
+
+    <h3 className="font-semibold text-2xl">
+      {stats.peticiones}
+    </h3>
+
+  </div>
+
+  <div className="
+  bg-[#f5f5f7]
+  rounded-3xl
+  p-5
+  border border-zinc-200
+  ">
+
+    <p className="text-zinc-400 text-sm mb-2">
+      Galería
+    </p>
+
+    <h3 className="font-semibold text-2xl">
+      {stats.galeria}
+    </h3>
+
+  </div>
+
+  <div className="
+  bg-[#f5f5f7]
+  rounded-3xl
+  p-5
+  border border-zinc-200
+  ">
+
+    <p className="text-zinc-400 text-sm mb-2">
+      En Vivo
+    </p>
+
+    <h3 className="font-semibold text-2xl">
+      {stats.livestream}
+    </h3>
+
+  </div>
+
+</div>
+
+  </motion.div>
+
+</div>
 
         
 
@@ -110,28 +346,27 @@ export default function AdminHome() {
             uppercase
             tracking-[5px]
             text-zinc-400
-            mb-6
+            mb-4
             text-sm
             font-medium
             ">
-              PANEL CMS
-            </p>
+           ACCESOS RÁPIDOS
+           </p>
 
-            <h1 className="
-            text-5xl
-            md:text-6xl
-            font-semibold
-            tracking-tight
-            leading-[0.95]
-            max-w-4xl
-            mb-12
-            ">
+          <h2 className="
+          text-3xl
+          md:text-4xl
+          font-semibold
+          tracking-tight
+          leading-tight
+          max-w-3xl
+          mb-12
+          ">
 
-              Controla toda tu iglesia
-              <br />
-              de forma simple.
+         Herramientas principales
+         del CMS.
 
-            </h1>
+         </h2>
 
             {/* MINI CARDS */}
 
