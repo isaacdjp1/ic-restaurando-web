@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { motion } from "framer-motion"
+import { motion} from "framer-motion"
 import { useEffect, useState } from "react"
 import { supabase } from "../lib/supabase"
 import PageWrapper from "../components/PageWrapper"
@@ -16,6 +16,12 @@ export default function AdminHome() {
   livestream: 0
 
 })
+
+const [activity, setActivity] =
+useState([])
+
+const [eventos, setEventos] =
+useState([])
 
   const cards = [
 
@@ -132,9 +138,103 @@ export default function AdminHome() {
 
     })
 
+    // ACTIVIDAD REAL
+
+const {
+  data: recentPeticiones
+} = await supabase
+
+  .from("peticiones")
+
+  .select("*")
+
+  .order("created_at", {
+    ascending: false
+  })
+
+  .limit(5)
+
+if (recentPeticiones) {
+
+  const formattedActivity =
+  recentPeticiones.map(
+    (item) => ({
+
+      title:
+      `Nueva petición de ${item.nombre}`,
+
+      time:
+      item.created_at,
+
+      icon:
+      "🙏"
+
+    })
+  )
+
+  setActivity(formattedActivity)
+
+  // EVENTOS DESDE FLYERS
+
+const {
+  data: flyersEventos
+} = await supabase
+
+  .from("flyers")
+
+  .select("*")
+
+  .eq("activo", true)
+
+  .order("orden", {
+    ascending: true
+  })
+
+  .limit(3)
+
+if (flyersEventos) {
+
+  setEventos(flyersEventos)
+
+}
+
+}
+
   }
 
-  fetchStats()
+ fetchStats()
+
+// REALTIME PETICIONES
+
+const channel = supabase
+
+  .channel("realtime-peticiones")
+
+  .on(
+
+    "postgres_changes",
+
+    {
+      event: "*",
+      schema: "public",
+      table: "peticiones"
+    },
+
+    () => {
+
+      fetchStats()
+
+    }
+
+  )
+
+  .subscribe()
+
+return () => {
+
+  supabase.removeChannel(channel)
+
+}
 
 }, [])
 
@@ -446,6 +546,288 @@ min-w-[320px]
           </div>
 
         </motion.div>
+
+{/* DASHBOARD PANELS */}
+
+<div className="
+max-w-7xl
+mx-auto
+px-6
+pb-20
+grid
+grid-cols-1
+lg:grid-cols-2
+gap-8
+relative
+z-10
+">
+
+  {/* EVENTOS */}
+
+  <div className="
+  bg-white
+  border border-zinc-200
+  rounded-[36px]
+  p-8
+  shadow-sm
+  ">
+
+    <div className="
+    flex items-center justify-between
+    mb-8
+    ">
+
+      <h2 className="
+      text-3xl
+      font-semibold
+      tracking-tight
+      ">
+
+        Próximos Eventos
+
+      </h2>
+
+      <button
+
+  onClick={() => navigate("/admin/flyers")}
+
+  className="
+  text-sm
+  text-zinc-500
+  hover:text-black
+  transition-all
+  "
+>
+
+        Ver todos
+
+      </button>
+
+    </div>
+
+    <div className="space-y-5">
+
+      {eventos.map((evento, index) => (
+
+        <motion.div
+          key={index}
+
+          initial={{
+            opacity: 0,
+            y: 20
+          }}
+
+          animate={{
+            opacity: 1,
+            y: 0
+          }}
+
+          transition={{
+            delay: index * 0.08
+          }}
+
+          className="
+          flex
+          gap-5
+          border-b
+          border-zinc-100
+          pb-5
+          last:border-none
+          "
+        >
+
+          <img
+         src={evento.image_url}
+         alt={evento.titulo}
+         className="
+         min-w-[75px]
+         w-[75px]
+         h-[75px]
+         rounded-3xl
+         object-cover
+         border border-zinc-200
+         shadow-sm
+         "
+/>
+
+<div>
+
+  <h3 className="
+  text-xl
+  font-semibold
+  mb-2
+  ">
+
+    {evento.titulo}
+
+  </h3>
+
+  <p className="
+  text-zinc-500
+  text-sm
+  mb-1
+  ">
+
+    🕒 {evento.hora}
+
+  </p>
+
+  <p className="
+  text-zinc-500
+  text-sm
+  ">
+
+    📅 {evento.dia}
+
+  </p>
+
+</div>
+
+        </motion.div>
+
+      ))}
+
+    </div>
+
+  </div>
+
+  {/* ACTIVIDAD */}
+
+  <div className="
+  bg-white
+  border border-zinc-200
+  rounded-[36px]
+  p-8
+  shadow-sm
+  ">
+
+    <div className="
+    flex items-center justify-between
+    mb-8
+    ">
+
+      <h2 className="
+      text-3xl
+      font-semibold
+      tracking-tight
+      ">
+
+        Actividad Reciente
+
+      </h2>
+
+      <button
+
+     onClick={() => navigate("/admin/peticiones")}
+
+     className="
+     text-sm
+     text-zinc-500
+     hover:text-black
+     transition-all
+     "
+>
+
+        Ver todo
+
+      </button>
+
+    </div>
+
+   
+
+  <div className="space-y-5">
+
+    {activity.map((item, index) => (
+
+      <motion.div
+        key={item.time}
+
+        initial={{
+          opacity: 0,
+          y: -30,
+          scale: 0.96
+        }}
+
+        animate={{
+          opacity: 1,
+          y: 0,
+          scale: 1
+        }}
+
+        exit={{
+          opacity: 0,
+          y: 20
+        }}
+
+        transition={{
+          duration: 0.35,
+          delay: index * 0.05
+        }}
+
+        layout
+
+        className="
+        flex
+        items-start
+        gap-4
+        "
+      >
+
+        <div className="
+        w-14
+        h-14
+        rounded-2xl
+        bg-[#f5f5f7]
+        flex
+        items-center
+        justify-center
+        text-xl
+        shrink-0
+        ">
+
+          🙏
+
+        </div>
+
+        <div>
+
+          <h3 className="
+          font-semibold
+          text-lg
+          mb-1
+          ">
+
+            {item.title}
+
+          </h3>
+
+          <p className="
+          text-zinc-500
+          text-sm
+          ">
+
+            {new Date(
+              item.time
+            ).toLocaleString()}
+
+          </p>
+
+        </div>
+
+      </motion.div>
+
+    ))}
+
+  </div>
+
+  </div>
+
+  </div>
+
+
+
+
 
         {/* MAIN GRID */}
 

@@ -239,25 +239,30 @@ export default function Login() {
         onClick={() => {
 
        const currentHost =
-      window.location.hostname
+window.location.hostname
 
-       const publicDomain =
-       currentHost.replace("admin.", "")
+const publicDomain =
+currentHost.replace("admin.", "")
 
-       if (
-    currentHost.includes("localhost")
-     ) {
+if (
 
-    window.location.href =
-    "http://localhost:5173"
+  currentHost.includes("localhost") ||
 
-  } else {
+  currentHost.includes("192.168")
 
-    window.location.href =
-    `https://${publicDomain}`
+) {
 
-  }
+  window.location.href =
+  "http://192.168.2.18:5173"
 
+}
+
+else {
+
+  window.location.href =
+  `https://${publicDomain}`
+
+}
 }}
 
         className="
