@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { supabase } from "../lib/supabase"
 import { useNavigate } from "react-router-dom"
+import { useToast } from "../context/ToastContext"
 
 export default function AdminContenido() {
 
@@ -10,6 +11,8 @@ export default function AdminContenido() {
   const [footer, setFooter] = useState(null)
 
   const navigate = useNavigate()
+
+  const { showToast } = useToast()
 
   const [saving, setSaving] = useState(false)
 
@@ -111,7 +114,7 @@ export default function AdminContenido() {
 
     }
 
-    alert("Contenido actualizado correctamente")
+    showToast("Contenido actualizado correctamente", "success")
 
   } catch (error) {
 

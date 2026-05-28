@@ -3,10 +3,12 @@ import { motion } from "framer-motion"
 import { supabase } from "../lib/supabase"
 import { useNavigate } from "react-router-dom"
 import { v4 as uuidv4 } from "uuid"
+import { useToast } from "../context/ToastContext"
 
 export default function AdminConfiguracion() {
 
   const navigate = useNavigate()
+  const { showToast } = useToast()
 
   const [settings, setSettings] = useState(null)
 
@@ -107,7 +109,7 @@ export default function AdminConfiguracion() {
 
     if (!error) {
 
-      alert("Configuración actualizada")
+      showToast("Configuración actualizada", "success")
 
     }
 

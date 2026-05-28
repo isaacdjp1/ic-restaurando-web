@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import { supabase } from "../lib/supabase"
 import { Link } from "react-router-dom"
+import { useToast } from "../context/ToastContext"
 
 export default function AdminLivestream() {
 
+  const { showToast } = useToast()
   const [loading, setLoading] = useState(false)
   const [uploading, setUploading] = useState(false)
   const [playPreview, setPlayPreview] = useState(false)
@@ -64,7 +66,7 @@ export default function AdminLivestream() {
 
         console.log(uploadError)
 
-        alert("Error subiendo imagen")
+        showToast("Error subiendo imagen", "error")
 
         setUploading(false)
 
@@ -117,11 +119,11 @@ export default function AdminLivestream() {
 
       console.log(error)
 
-      alert("Error actualizando livestream")
+      showToast("Error actualizando livestream", "error")
 
     } else {
 
-      alert("Livestream actualizado")
+      showToast("Livestream actualizado")
 
       fetchLivestream()
 

@@ -4,10 +4,12 @@ import { supabase } from "../lib/supabase"
 import emailjs from "@emailjs/browser"
 import { motion } from "framer-motion"
 import PageWrapper from "../components/PageWrapper"
+import { useToast } from "../context/ToastContext"
 
 export default function AdminDashboard() {
 
   const navigate = useNavigate()
+  const { showToast } = useToast()  
 
   const [peticiones, setPeticiones] = useState([])
 
@@ -156,7 +158,7 @@ export default function AdminDashboard() {
         .update({ estado: "Respondido" })
         .eq("id", selectedPeticion.id)
 
-      alert("Respuesta enviada exitosamente")
+      showToast( "Respuesta enviada exitosamente" )
 
       setSelectedPeticion(null)
 
@@ -166,7 +168,7 @@ export default function AdminDashboard() {
 
     } catch (error) {
 
-      alert("Error enviando correo")
+      showToast( "Error enviando correo" )
 
       console.log(error)
 
@@ -499,7 +501,21 @@ export default function AdminDashboard() {
 
         {selectedPeticion && (
 
-          <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center z-50 px-6 overflow-y-auto py-10">
+          <div className="
+          fixed
+          inset-0
+          bg-black/70
+          backdrop-blur-sm
+          flex
+          justify-center
+          items-start
+          z-50
+          px-6
+          overflow-y-auto
+          pt-10
+          pb-10
+          "
+          >
 
             <motion.div
 

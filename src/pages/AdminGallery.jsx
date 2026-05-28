@@ -3,9 +3,10 @@ import { supabase } from "../lib/supabase"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import PageWrapper from "../components/PageWrapper"
+import { useToast } from "../context/ToastContext"
 
 export default function AdminGallery() {
-
+  const { showToast } = useToast()
   const [images, setImages] = useState([])
   const [uploading, setUploading] = useState(false)
   const [selectedFile, setSelectedFile] = useState(null)
@@ -41,7 +42,7 @@ export default function AdminGallery() {
 
     if (!selectedFile) {
 
-      alert("Selecciona una imagen")
+      showToast("Selecciona una imagen", "error")
       return
 
     }
@@ -112,7 +113,7 @@ export default function AdminGallery() {
 
       if (insertError) throw insertError
 
-      alert("Imagen reemplazada correctamente")
+      showToast( "Imagen reemplazada correctamente")
 
       setSelectedFile(null)
       setPreview(null)
@@ -123,7 +124,7 @@ export default function AdminGallery() {
 
       console.log(error)
 
-      alert(error.message)
+      showToast( error.message,"error" )
 
     } finally {
 
@@ -160,7 +161,8 @@ export default function AdminGallery() {
 
       console.log(error)
 
-      alert("Error eliminando imagen")
+      showToast("Error eliminando imagen","error"
+)
 
     }
 
@@ -203,13 +205,13 @@ export default function AdminGallery() {
 
       fetchGallery()
 
-      alert("Galería eliminada")
+      showToast("Galería eliminada")
 
     } catch (error) {
 
       console.log(error)
 
-      alert("Error eliminando galería")
+      showToast("Error eliminando galería", "error")
 
     }
 

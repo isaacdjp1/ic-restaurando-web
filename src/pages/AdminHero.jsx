@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 import { supabase } from "../lib/supabase"
 import { useNavigate } from "react-router-dom"
+import { useToast } from "../context/ToastContext"
 
 export default function AdminHero() {
 
   const navigate = useNavigate()
+  const { showToast } = useToast()
 
   const [loading, setLoading] = useState(false)
 
@@ -178,11 +180,11 @@ const [slide5Preview, setSlide5Preview] = useState("")
 
     if (error) {
 
-      alert("Error actualizando portada")
+      showToast("Error actualizando portada", "error")
 
     } else {
 
-      alert("Portada actualizada correctamente")
+      showToast("Portada actualizada correctamente", "success")
 
     await fetchHero()
 

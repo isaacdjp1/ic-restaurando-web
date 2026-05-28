@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom"
 import { supabase } from "../lib/supabase"
 import PageWrapper from "../components/PageWrapper"
 import { motion } from "framer-motion"
+import { useToast } from "../context/ToastContext"
 
 export default function AdminFlyers() {
 
   const navigate = useNavigate()
+  const { showToast } = useToast()
 
   const [flyers, setFlyers] = useState([])
 
@@ -23,7 +25,6 @@ export default function AdminFlyers() {
   const [imageFile, setImageFile] = useState(null)
   const [preview, setPreview] = useState("")
   const [uploading, setUploading] = useState(false)
-  const [successMessage, setSuccessMessage] = useState("")
 
   useEffect(() => {
 
@@ -258,7 +259,7 @@ export default function AdminFlyers() {
 
 setUploading(false)
 
-setSuccessMessage(
+showToast(
 
   editingFlyer
     ? "Flyer actualizado correctamente"
@@ -266,11 +267,6 @@ setSuccessMessage(
 
 )
 
-setTimeout(() => {
-
-  setSuccessMessage("")
-
-}, 1800)
 
 setTimeout(() => {
 
@@ -287,45 +283,7 @@ setTimeout(() => {
 
       <section className="bg-[#f5f5f7] min-h-screen text-[#111111]">
 
-        {successMessage && (
-
-       <motion.div
-
-      initial={{
-      opacity: 0,
-      y: -30
-      }}
-
-      animate={{
-      opacity: 1,
-      y: 0
-      }}
-
-      exit={{
-      opacity: 0
-      }}
-
-      className="
-      fixed
-      top-6
-      left-1/2
-      -translate-x-1/2
-      z-[999]
-      bg-black
-      text-white
-      px-8
-      py-5
-      rounded-2xl
-      font-semibold
-      shadow-lg
-    "
-  >
-
-    {successMessage}
-
-  </motion.div>
-
-)}
+      
 
         {/* HEADER */}
 
