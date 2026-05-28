@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 
 import Home from "./pages/Home"
 import Login from "./pages/Login"
@@ -13,23 +13,33 @@ import AdminHero from "./pages/AdminHero"
 import AdminContenido from "./pages/AdminContenido"
 import AdminConfiguracion from "./pages/AdminConfiguracion"
 
+
 import Gallery from "./components/Gallery"
 
 export default function App() {
+
+  const hostname = window.location.hostname
+
+  const isAdminDomain =
+  hostname.startsWith("admin.")
+  || hostname.includes("admin.localhost")
 
   return (
 
     <Routes>
 
       <Route
-        path="/"
-        element={<Home />}
-      />
-
-      <Route
-        path="/login"
-        element={<Login />}
-      />
+      path="/login"
+      element={
+      isAdminDomain
+      ? <Login />
+      : <Navigate to="/" />
+  }
+/>
+    <Route
+  path="/"
+  element={<Home />}
+/>
 
       {/* ADMIN */}
 
@@ -152,9 +162,10 @@ export default function App() {
       {/* PUBLIC */}
 
       <Route
-        path="/galeria"
-        element={<Gallery />}
-      />
+  path="/galeria"
+  element={<Gallery />}
+
+/>
 
     </Routes>
 

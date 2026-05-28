@@ -177,45 +177,45 @@ export default function Login() {
 
       </div>
 
-      {/* Background Logo */}
+      {/* FULL BACKGROUND IMAGE */}
 
-      <motion.div
+<motion.div
 
-        initial={{
-          opacity: 0,
-          scale: 0.9
-        }}
+  initial={{
+    opacity: 0,
+    scale: 1.08
+  }}
 
-        animate={{
-          opacity: 1,
-          scale: 1
-        }}
+  animate={{
+    opacity: 1,
+    scale: 1
+  }}
 
-        transition={{
-          duration: 1
-        }}
+  transition={{
+    duration: 1.2
+  }}
 
-        className="absolute inset-0 flex items-center justify-center"
-      >
+  className="absolute inset-0"
+>
 
-        <img
-          src={settings?.logo_url}
-          alt="Logo"
-          className="
-            w-[700px]
-            opacity-20
-            object-contain
-            blur-[1px]
-            select-none
-            pointer-events-none
-          "
-        />
+  <img
+    src={settings?.logo_url}
+    alt="Background"
+    className="
+    w-full
+    h-full
+    object-contain
+    opacity-25
+    blur-[1px]
+    scale-90
+"
+  />
 
-      </motion.div>
+</motion.div>
 
       {/* Dark Overlay */}
 
-      <div className="absolute inset-0 bg-black/70"></div>
+      <div className="absolute inset-0 bg-black/30"></div>
 
       {/* Home Button */}
 
@@ -236,7 +236,29 @@ export default function Login() {
           delay: 0.2
         }}
 
-        onClick={() => navigate("/")}
+        onClick={() => {
+
+       const currentHost =
+      window.location.hostname
+
+       const publicDomain =
+       currentHost.replace("admin.", "")
+
+       if (
+    currentHost.includes("localhost")
+     ) {
+
+    window.location.href =
+    "http://localhost:5173"
+
+  } else {
+
+    window.location.href =
+    `https://${publicDomain}`
+
+  }
+
+}}
 
         className="
           absolute top-8 right-8 z-20
@@ -283,13 +305,13 @@ export default function Login() {
 
         className="
           relative z-10
-          bg-white/95
+          bg-white/85
           backdrop-blur-xl
           rounded-3xl
           p-10
           w-full
           max-w-md
-          shadow-2xl
+          shadow-[0_25px_80px_rgba(0,0,0,0.45)]
           border border-white/20
         "
       >
@@ -312,11 +334,12 @@ export default function Login() {
           }}
 
           className="
-            text-4xl
-            font-black
-            mb-8
-            text-center
-          "
+          text-4xl
+          font-black
+          mb-8
+          text-center
+          text-black
+"
         >
 
           Admin Login
@@ -350,16 +373,18 @@ export default function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
 
-            className="
-              bg-gray-100
-              rounded-2xl
-              p-4
-              outline-none
-              transition-all duration-300
-              focus:ring-2
-              focus:ring-yellow-500
-              focus:scale-[1.01]
-            "
+           className="
+           bg-[#f3f3f5]
+           text-black
+           placeholder:text-gray-500
+           rounded-2xl
+           p-4
+           outline-none
+           border border-black/10
+           transition-all duration-300
+           focus:ring-2
+           focus:ring-yellow-500
+"
           />
 
           <motion.input
@@ -385,15 +410,17 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
 
             className="
-              bg-gray-100
-              rounded-2xl
-              p-4
-              outline-none
-              transition-all duration-300
-              focus:ring-2
-              focus:ring-yellow-500
-              focus:scale-[1.01]
-            "
+           bg-[#f3f3f5]
+           text-black
+           placeholder:text-gray-500
+           rounded-2xl
+           p-4
+           outline-none
+           border border-black/10
+           transition-all duration-300
+           focus:ring-2
+           focus:ring-yellow-500
+"
           />
 
           <motion.button
