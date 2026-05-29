@@ -140,7 +140,145 @@ const [slide5Preview, setSlide5Preview] = useState("")
 
     setLoading(true)
 
+    if (logoFile && heroContent?.logo_url) {
+
+    const oldLogoPath =
+    decodeURIComponent(
+      heroContent.logo_url
+        .split("/")
+        .pop()
+    )
+
+    await supabase.storage
+
+    .from("hero-content")
+
+    .remove([oldLogoPath])
+
+}
+
     const logoUrl = await uploadImage(logoFile, "logo")
+
+    if (slide1 && heroContent?.slide1) {
+
+  const oldSlide1 =
+    decodeURIComponent(
+      heroContent.slide1
+        .split("/")
+        .pop()
+    )
+
+    console.log(
+  "OLD SLIDE 1:",
+  oldSlide1
+)
+
+const result = await supabase.storage
+  .from("hero-content")
+  .remove([oldSlide1])
+
+console.log(
+  "DELETE RESULT:",
+  result
+)
+
+  await supabase.storage
+    .from("hero-content")
+    .remove([oldSlide1])
+
+}
+
+if (slide2 && heroContent?.slide2) {
+
+  const oldSlide2 =
+    decodeURIComponent(
+      heroContent.slide2
+        .split("/")
+        .pop()
+    )
+
+  const result =
+    await supabase.storage
+
+      .from("hero-content")
+
+      .remove([oldSlide2])
+
+  console.log(
+    "DELETE SLIDE 2:",
+    result
+  )
+
+}
+
+if (slide3 && heroContent?.slide3) {
+
+  const oldSlide3 =
+    decodeURIComponent(
+      heroContent.slide3
+        .split("/")
+        .pop()
+    )
+
+  const result =
+    await supabase.storage
+
+      .from("hero-content")
+
+      .remove([oldSlide3])
+
+  console.log(
+    "DELETE SLIDE 3:",
+    result
+  )
+
+}
+
+if (slide4 && heroContent?.slide4) {
+
+  const oldSlide4 =
+    decodeURIComponent(
+      heroContent.slide4
+        .split("/")
+        .pop()
+    )
+
+  const result =
+    await supabase.storage
+
+      .from("hero-content")
+
+      .remove([oldSlide4])
+
+  console.log(
+    "DELETE SLIDE 4:",
+    result
+  )
+
+}
+
+if (slide5 && heroContent?.slide5) {
+
+  const oldSlide5 =
+    decodeURIComponent(
+      heroContent.slide5
+        .split("/")
+        .pop()
+    )
+
+  const result =
+    await supabase.storage
+
+      .from("hero-content")
+
+      .remove([oldSlide5])
+
+  console.log(
+    "DELETE SLIDE 5:",
+    result
+  )
+
+}
 
     const slide1Url = await uploadImage(slide1, "slide1")
     const slide2Url = await uploadImage(slide2, "slide2")

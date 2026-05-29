@@ -54,6 +54,29 @@ export default function AdminLivestream() {
 
       setUploading(true)
 
+      if (streamData.thumbnail_url) {
+
+  const oldThumbnail =
+    decodeURIComponent(
+      streamData.thumbnail_url
+        .split("/")
+        .pop()
+    )
+
+  const result =
+    await supabase.storage
+
+      .from("livestream-thumbnails")
+
+      .remove([oldThumbnail])
+
+  console.log(
+    "DELETE THUMBNAIL:",
+    result
+  )
+
+}
+
       const fileExt = file.name.split(".").pop()
 
       const fileName = `thumbnail-${Date.now()}.${fileExt}`
@@ -94,6 +117,44 @@ export default function AdminLivestream() {
     }
 
   }
+
+  async function handleDeleteThumbnail() {
+
+  if (!streamData.thumbnail_url)
+    return
+
+  const oldThumbnail =
+    decodeURIComponent(
+      streamData.thumbnail_url
+        .split("/")
+        .pop()
+    )
+
+  const result =
+    await supabase.storage
+
+      .from("livestream-thumbnails")
+
+      .remove([oldThumbnail])
+
+  console.log(
+    "DELETE THUMBNAIL:",
+    result
+  )
+
+  showToast(
+    "Miniatura eliminada"
+  )
+
+  setStreamData({
+
+    ...streamData,
+
+    thumbnail_url: ""
+
+  })
+
+}
 
   async function handleSave() {
 
@@ -595,15 +656,10 @@ text-lg
                       </p>
 
                       <button
-                        type="button"
-                        onClick={() =>
-                          setStreamData({
-                            ...streamData,
-                            thumbnail_url: "",
-                          })
-                        }
-                        className="bg-red-500 hover:bg-red-400 text-white px-5 py-2 rounded-xl font-semibold transition"
-                      >
+                     type="button"
+                     onClick={handleDeleteThumbnail}
+                     className="bg-red-500 hover:bg-red-400 text-white px-5 py-2 rounded-xl font-semibold transition"
+                     >
 
                         Eliminar
 
@@ -814,7 +870,8 @@ font-semibold
 transition
 duration-300
 text-lg
-" px-10 py-5 rounded-2xl font-bold transition duration-300 text-lg
+ px-10 py-5 rounded-2xl font-bold transition duration-300 text-lg
+ "
                   >
 
                     {streamData.button_text || "Ver Canal"}

@@ -47,6 +47,35 @@ export default function AdminConfiguracion() {
 
   if (!file) return
 
+  if (
+  settings?.[field] &&
+  settings[field] !== "temp"
+) {
+
+  const oldFile =
+    decodeURIComponent(
+      settings[field]
+        .split("/")
+        .pop()
+    )
+
+  const oldPath =
+    `${field}/${oldFile}`
+
+  const result =
+    await supabase.storage
+
+      .from("branding")
+
+      .remove([oldPath])
+
+  console.log(
+    "DELETE BRANDING:",
+    result
+  )
+
+}
+
   const fileExt = file.name.split(".").pop()
 
   const fileName = `${uuidv4()}.${fileExt}`

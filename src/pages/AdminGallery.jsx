@@ -142,9 +142,11 @@ export default function AdminGallery() {
 
     try {
 
-      const fileName = imageUrl
-        .split("/")
-        .pop()
+      const fileName = decodeURIComponent(
+      imageUrl
+     .split("/")
+     .pop()
+)
 
       await supabase.storage
         .from("gallery")
@@ -178,13 +180,15 @@ export default function AdminGallery() {
 
     try {
 
-      const filePaths = images.map((image) => {
+     const filePaths = images.map((image) => {
 
-        return image.image_url
-          .split("/")
-          .pop()
+     return decodeURIComponent(
+     image.image_url
+      .split("/")
+      .pop()
+     )
 
-      })
+})
 
       // ELIMINAR STORAGE
 
@@ -204,6 +208,10 @@ export default function AdminGallery() {
         .neq("id", 0)
 
       fetchGallery()
+
+      showToast(
+     "Imagen eliminada correctamente"
+)
 
       showToast("Galería eliminada")
 

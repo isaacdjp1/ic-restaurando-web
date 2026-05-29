@@ -85,21 +85,92 @@ export default function AdminFlyers() {
 
   }
 
-  async function handleDelete(id) {
+  async function handleDelete(flyer) {
 
-    const confirmDelete =
-      confirm("¿Eliminar flyer?")
+  const confirmDelete =
+    confirm("¿Eliminar flyer?")
 
-    if (!confirmDelete) return
+  if (!confirmDelete) return
 
-    await supabase
+  try {
+
+    const imagePath =
+  decodeURIComponent(
+    flyer.image_url
+      .split("/")
+      .pop()
+  )
+
+    console.log(
+      "IMAGE URL:",
+      flyer.image_url
+    )
+
+    console.log(
+      "IMAGE PATH:",
+      imagePath
+    )
+
+    const {
+      error: storageError
+    } = await supabase.storage
+
       .from("flyers")
+
+      .remove([imagePath])
+
+    if (storageError) {
+
+      console.log(
+        "STORAGE ERROR:",
+        storageError
+      )
+
+    }
+
+    const {
+      error
+    } = await supabase
+
+      .from("flyers")
+
       .delete()
-      .eq("id", id)
+
+      .eq("id", flyer.id)
+
+    if (error) {
+
+      console.log(error)
+
+      showToast(
+        "Error eliminando flyer",
+        "error"
+      )
+
+      return
+
+    }
+
+    showToast(
+      "Flyer eliminado correctamente"
+    )
 
     fetchFlyers()
 
   }
+
+  catch (error) {
+
+    console.log(error)
+
+    showToast(
+      "Error eliminando flyer",
+      "error"
+    )
+
+  }
+
+}
 
   function handleImageChange(e) {
 
@@ -688,7 +759,7 @@ setTimeout(() => {
                     </button>
 
                     <button
-                      onClick={() => handleDelete(flyer.id)}
+                      onClick={() => handleDelete(flyer)}
                       className="
                         bg-[#ff3b30]
                         text-white
