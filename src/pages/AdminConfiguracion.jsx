@@ -4,6 +4,7 @@ import { supabase } from "../lib/supabase"
 import { useNavigate } from "react-router-dom"
 import { v4 as uuidv4 } from "uuid"
 import { useToast } from "../context/ToastContext"
+import { getCurrentChurchId } from "../lib/getCurrentChurchId"
 
 export default function AdminConfiguracion() {
 
@@ -26,11 +27,27 @@ export default function AdminConfiguracion() {
 
   async function fetchSettings() {
 
-    const { data, error } = await supabase
-      .from("site_settings")
-      .select("*")
-      .eq("activo", true)
-      .single()
+    const churchId =
+  await getCurrentChurchId()
+
+const { data, error } =
+  await supabase
+
+    .from("site_settings")
+
+    .select("*")
+
+    .eq(
+      "church_id",
+      churchId
+    )
+
+    .eq(
+      "activo",
+      true
+    )
+
+    .single()
 
     console.log(data)
     console.log(error)
@@ -107,12 +124,26 @@ export default function AdminConfiguracion() {
 
   setSettings(updatedSettings)
 
-  await supabase
-    .from("site_settings")
-    .update({
-      [field]: publicUrl
-    })
-    .eq("id", settings.id)
+ const churchId =
+  await getCurrentChurchId()
+
+await supabase
+
+  .from("site_settings")
+
+  .update({
+    [field]: publicUrl
+  })
+
+  .eq(
+    "id",
+    settings.id
+  )
+
+  .eq(
+    "church_id",
+    churchId
+  )
 
 }
 
@@ -121,6 +152,9 @@ export default function AdminConfiguracion() {
     if (!settings) return
 
     setSaving(true)
+
+    const churchId =
+    await getCurrentChurchId()
 
     const { error } = await supabase
       .from("site_settings")
@@ -135,7 +169,7 @@ export default function AdminConfiguracion() {
   secondary_color: settings.secondary_color
 })
       .eq("id", settings.id)
-
+      .eq("church_id", churchId)
     if (!error) {
 
       showToast("Configuración actualizada", "success")
@@ -484,12 +518,26 @@ export default function AdminConfiguracion() {
       logo_url: "temp"
     })
 
-    await supabase
-      .from("site_settings")
-      .update({
-        logo_url: "temp"
-      })
-      .eq("id", settings.id)
+    const churchId =
+  await getCurrentChurchId()
+
+await supabase
+
+  .from("site_settings")
+
+  .update({
+    logo_url: "temp"
+  })
+
+  .eq(
+    "id",
+    settings.id
+  )
+
+  .eq(
+    "church_id",
+    churchId
+  )
 
   }}
   className="
@@ -623,12 +671,26 @@ bg-[#fafafa]
       favicon_url: "temp"
     })
 
-    await supabase
-      .from("site_settings")
-      .update({
-        favicon_url: "temp"
-      })
-      .eq("id", settings.id)
+   const churchId =
+  await getCurrentChurchId()
+
+await supabase
+
+  .from("site_settings")
+
+  .update({
+    favicon_url: "temp"
+  })
+
+  .eq(
+    "id",
+    settings.id
+  )
+
+  .eq(
+    "church_id",
+    churchId
+  )
 
   }}
   className="

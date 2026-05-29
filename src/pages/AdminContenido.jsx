@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import { supabase } from "../lib/supabase"
 import { useNavigate } from "react-router-dom"
 import { useToast } from "../context/ToastContext"
+import { getCurrentChurchId } from "../lib/getCurrentChurchId"
 
 export default function AdminContenido() {
 
@@ -26,43 +27,85 @@ export default function AdminContenido() {
 
   async function fetchServices() {
 
-    const { data, error } = await supabase
+  const churchId =
+    await getCurrentChurchId()
+
+  const { data, error } =
+    await supabase
+
       .from("services")
+
       .select("*")
+
+      .eq(
+        "church_id",
+        churchId
+      )
+
       .order("id")
 
-    if (!error) {
+  if (!error) {
 
-      setServices(data)
-
-    }
+    setServices(data)
 
   }
+
+}
 
   async function fetchFooter() {
 
-    const { data, error } = await supabase
+  const churchId =
+    await getCurrentChurchId()
+
+  const { data, error } =
+    await supabase
+
       .from("footer_content")
+
       .select("*")
-      .eq("activo", true)
+
+      .eq(
+        "church_id",
+        churchId
+      )
+
+      .eq(
+        "activo",
+        true
+      )
+
       .single()
 
-    if (!error) {
+  if (!error) {
 
-      setFooter(data)
-
-    }
+    setFooter(data)
 
   }
 
+}
+
   async function updateService(id, field, value) {
 
-    await supabase
-      .from("services")
-      .update({
-        [field]: value
-      })
-      .eq("id", id)
+    const churchId =
+  await getCurrentChurchId()
+
+await supabase
+
+  .from("services")
+
+  .update({
+    [field]: value
+  })
+
+  .eq(
+    "id",
+    id
+  )
+
+  .eq(
+    "church_id",
+    churchId
+  )
 
   }
 
@@ -70,18 +113,35 @@ export default function AdminContenido() {
 
     if (!footer) return
 
-    await supabase
-      .from("footer_content")
-      .update({
-        [field]: value
-      })
-      .eq("id", footer.id)
+    const churchId =
+  await getCurrentChurchId()
+
+await supabase
+
+  .from("footer_content")
+
+  .update({
+    [field]: value
+  })
+
+  .eq(
+    "id",
+    footer.id
+  )
+
+  .eq(
+    "church_id",
+    churchId
+  )
 
   }
 
-  async function saveAllChanges() {
+ async function saveAllChanges() {
 
   setSaving(true)
+
+  const churchId =
+    await getCurrentChurchId()
 
   try {
 
@@ -95,7 +155,15 @@ export default function AdminContenido() {
           time: service.time,
           extra: service.extra
         })
-        .eq("id", service.id)
+        .eq(
+        "id",
+        service.id
+        )
+
+       .eq(
+       "church_id",
+       churchId
+      )
 
     }
 
@@ -110,7 +178,15 @@ export default function AdminContenido() {
           instagram: footer.instagram,
           youtube: footer.youtube
         })
-        .eq("id", footer.id)
+        .eq(
+        "id",
+        footer.id
+        )
+
+      .eq(
+      "church_id",
+       churchId
+       )
 
     }
 

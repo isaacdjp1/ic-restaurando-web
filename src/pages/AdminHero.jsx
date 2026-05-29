@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { supabase } from "../lib/supabase"
 import { useNavigate } from "react-router-dom"
 import { useToast } from "../context/ToastContext"
+import { getCurrentChurchId } from "../lib/getCurrentChurchId"
 
 export default function AdminHero() {
 
@@ -41,10 +42,25 @@ const [slide5Preview, setSlide5Preview] = useState("")
 
   async function fetchHero() {
 
-    const { data, error } = await supabase
+  const churchId =
+    await getCurrentChurchId()
+
+  const { data, error } = await supabase
+
     .from("hero_content")
+
     .select("*")
-    .eq("activo", true)
+
+    .eq(
+      "church_id",
+      churchId
+    )
+
+    .eq(
+      "activo",
+      true
+    )
+
     .single()
 
     if (!error && data) {
@@ -93,12 +109,27 @@ const [slide5Preview, setSlide5Preview] = useState("")
 
   const imageUrl = data.publicUrl
 
-  const { error } = await supabase
-    .from("hero_content")
-    .update({
-      [`slide${slideNumber}`]: imageUrl
-    })
-    .eq("activo", true)
+  const churchId =
+  await getCurrentChurchId()
+
+const { error } = await supabase
+
+  .from("hero_content")
+
+  .update({
+    [`slide${slideNumber}`]:
+      imageUrl
+  })
+
+  .eq(
+    "church_id",
+    churchId
+  )
+
+  .eq(
+    "activo",
+    true
+  )
 
   if (!error) {
 
@@ -298,6 +329,9 @@ if (slide5 && heroContent?.slide5) {
     if (slide4Url) setSlide4Preview(slide4Url)
     if (slide5Url) setSlide5Preview(slide5Url)
 
+      const churchId =
+      await getCurrentChurchId()
+
     const { error } = await supabase
       .from("hero_content")
       .update({
@@ -314,7 +348,15 @@ if (slide5 && heroContent?.slide5) {
      slide4: finalSlide4,
      slide5: finalSlide5,
     })
-      .eq("activo", true)
+      .eq(
+  "church_id",
+  churchId
+)
+
+.eq(
+  "activo",
+  true
+)
 
     if (error) {
 

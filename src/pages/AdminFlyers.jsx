@@ -4,6 +4,7 @@ import { supabase } from "../lib/supabase"
 import PageWrapper from "../components/PageWrapper"
 import { motion } from "framer-motion"
 import { useToast } from "../context/ToastContext"
+import { getCurrentChurchId } from "../lib/getCurrentChurchId"
 
 export default function AdminFlyers() {
 
@@ -57,18 +58,28 @@ export default function AdminFlyers() {
 
   async function fetchFlyers() {
 
-    const { data, error } = await supabase
-      .from("flyers")
-      .select("*")
-      .order("orden", { ascending: true })
+  const churchId =
+    await getCurrentChurchId()
 
-    if (!error) {
+  const { data, error } = await supabase
+    .from("flyers")
+    .select("*")
+    .eq(
+      "church_id",
+      churchId
+    )
+    .order(
+      "orden",
+      { ascending: true }
+    )
 
-      setFlyers(data)
+  if (!error) {
 
-    }
+    setFlyers(data)
 
   }
+
+}
 
   function resetForm() {
 
@@ -128,15 +139,26 @@ export default function AdminFlyers() {
 
     }
 
-    const {
-      error
-    } = await supabase
+    const churchId =
+  await getCurrentChurchId()
 
-      .from("flyers")
+   const {
+  error
+} = await supabase
 
-      .delete()
+  .from("flyers")
 
-      .eq("id", flyer.id)
+  .delete()
+
+  .eq(
+    "id",
+    flyer.id
+  )
+
+  .eq(
+    "church_id",
+    churchId
+  )
 
     if (error) {
 
@@ -270,19 +292,33 @@ export default function AdminFlyers() {
 
     if (editingFlyer) {
 
-      const { error } = await supabase
-        .from("flyers")
-        .update({
+      const churchId =
+  await getCurrentChurchId()
 
-          titulo,
-          descripcion,
-          dia,
-          hora,
-          orden: Number(orden),
-          image_url: imageUrl
+   const { error } = await supabase
 
-        })
-        .eq("id", editingFlyer.id)
+  .from("flyers")
+
+  .update({
+
+    titulo,
+    descripcion,
+    dia,
+    hora,
+    orden: Number(orden),
+    image_url: imageUrl
+
+  })
+
+  .eq(
+    "id",
+    editingFlyer.id
+  )
+
+  .eq(
+    "church_id",
+    churchId
+  )
 
       if (error) {
 
@@ -297,21 +333,32 @@ export default function AdminFlyers() {
 
     } else {
 
-      const { error } = await supabase
-        .from("flyers")
-        .insert([
+      const churchId =
+  await getCurrentChurchId()
 
-          {
-            titulo,
-            descripcion,
-            dia,
-            hora,
-            orden: Number(orden),
-            image_url: imageUrl,
-            activo: true
-          }
+const { error } =
+  await supabase
 
-        ])
+    .from("flyers")
+
+    .insert([
+
+      {
+
+        church_id:
+          churchId,
+
+        titulo,
+        descripcion,
+        dia,
+        hora,
+        orden: Number(orden),
+        image_url: imageUrl,
+        activo: true
+
+      }
+
+    ])
 
       if (error) {
 

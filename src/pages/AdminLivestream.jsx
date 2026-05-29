@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { supabase } from "../lib/supabase"
 import { Link } from "react-router-dom"
 import { useToast } from "../context/ToastContext"
+import { getCurrentChurchId } from "../lib/getCurrentChurchId"
 
 export default function AdminLivestream() {
 
@@ -30,23 +31,34 @@ export default function AdminLivestream() {
 
   async function fetchLivestream() {
 
-    const { data, error } = await supabase
+  const churchId =
+    await getCurrentChurchId()
+
+  const { data, error } =
+    await supabase
+
       .from("livestream")
+
       .select("*")
-      .eq("id", 1)
+
+      .eq(
+        "church_id",
+        churchId
+      )
+
       .single()
 
-    if (error) {
+  if (error) {
 
-      console.log(error)
+    console.log(error)
 
-    } else {
+  } else {
 
-      setStreamData(data)
-
-    }
+    setStreamData(data)
 
   }
+
+}
 
   async function uploadThumbnail(file) {
 
@@ -156,7 +168,12 @@ export default function AdminLivestream() {
 
 }
 
+
+
   async function handleSave() {
+
+    const churchId =
+    await getCurrentChurchId()
 
     setLoading(true)
 
@@ -172,7 +189,10 @@ export default function AdminLivestream() {
         thumbnail_url: streamData.thumbnail_url,
         is_live: streamData.is_live,
       })
-      .eq("id", 1)
+      .eq(
+      "church_id",
+      churchId
+)
 
     setLoading(false)
 
@@ -859,19 +879,19 @@ text-lg
                     target="_blank"
                     rel="noreferrer"
                     className="
-inline-block
-bg-black
-hover:bg-[#1c1c1e]
-text-white
-px-10
-py-5
-rounded-2xl
-font-semibold
-transition
-duration-300
-text-lg
- px-10 py-5 rounded-2xl font-bold transition duration-300 text-lg
- "
+                    inline-block
+                    bg-black
+                    hover:bg-[#1c1c1e]
+                    text-white
+                    px-10
+                    py-5
+                    rounded-2xl
+                    font-semibold
+                    transition
+                    duration-300
+                    text-lg
+                    px-10 py-5 rounded-2xl font-bold transition duration-300 text-lg
+                    "
                   >
 
                     {streamData.button_text || "Ver Canal"}

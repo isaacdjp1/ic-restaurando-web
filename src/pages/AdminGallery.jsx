@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import PageWrapper from "../components/PageWrapper"
 import { useToast } from "../context/ToastContext"
+import { getCurrentChurchId } from "../lib/getCurrentChurchId"
 
 export default function AdminGallery() {
   const { showToast } = useToast()
@@ -21,22 +22,32 @@ export default function AdminGallery() {
 
   async function fetchGallery() {
 
-    const { data, error } = await supabase
-      .from("gallery")
-      .select("*")
-      .order("position", { ascending: true })
+  const churchId =
+    await getCurrentChurchId()
 
-    if (error) {
+  const { data, error } = await supabase
+    .from("gallery")
+    .select("*")
+    .eq(
+      "church_id",
+      churchId
+    )
+    .order(
+      "position",
+      { ascending: true }
+    )
 
-      console.log(error)
+  if (error) {
 
-    } else {
+    console.log(error)
 
-      setImages(data)
+  } else {
 
-    }
+    setImages(data)
 
   }
+
+}
 
   async function handleUpload() {
 
@@ -69,10 +80,14 @@ export default function AdminGallery() {
           .from("gallery")
           .remove([oldFileName])
 
-        await supabase
-          .from("gallery")
-          .delete()
-          .eq("id", existingImage.id)
+        const churchId =
+       await getCurrentChurchId()
+
+      await supabase
+     .from("gallery")
+     .delete()
+    .eq("id", existingImage.id)
+    .eq("church_id", churchId)
 
       }
 
@@ -102,14 +117,34 @@ export default function AdminGallery() {
 
       // INSERT DATABASE
 
-      const { error: insertError } = await supabase
-        .from("gallery")
-        .insert([
-          {
-            image_url: imageUrl,
-            position: selectedPosition
-          }
-        ])
+
+
+      // INSERT DATABASE
+
+const churchId =
+  await getCurrentChurchId()
+
+console.log(
+  "CURRENT CHURCH:",
+  churchId
+)
+
+const { error: insertError } = await supabase
+  .from("gallery")
+  .insert([
+    {
+
+      church_id:
+        churchId,
+
+      image_url:
+        imageUrl,
+
+      position:
+        selectedPosition
+
+    }
+  ])
 
       if (insertError) throw insertError
 
@@ -152,10 +187,17 @@ export default function AdminGallery() {
         .from("gallery")
         .remove([fileName])
 
-      await supabase
-        .from("gallery")
-        .delete()
-        .eq("id", id)
+      const churchId =
+  await getCurrentChurchId()
+
+  await supabase
+  .from("gallery")
+  .delete()
+  .eq("id", id)
+  .eq(
+    "church_id",
+    churchId
+  )
 
       fetchGallery()
 
@@ -202,10 +244,16 @@ export default function AdminGallery() {
 
       // ELIMINAR DATABASE
 
-      await supabase
-        .from("gallery")
-        .delete()
-        .neq("id", 0)
+      const churchId =
+  await getCurrentChurchId()
+
+  await supabase
+  .from("gallery")
+  .delete()
+  .eq(
+    "church_id",
+    churchId
+  )
 
       fetchGallery()
 

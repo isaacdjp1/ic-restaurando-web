@@ -5,6 +5,7 @@ import emailjs from "@emailjs/browser"
 import { motion } from "framer-motion"
 import PageWrapper from "../components/PageWrapper"
 import { useToast } from "../context/ToastContext"
+import { getCurrentChurchId } from "../lib/getCurrentChurchId"
 
 export default function AdminDashboard() {
 
@@ -83,10 +84,25 @@ export default function AdminDashboard() {
 
   async function fetchPeticiones() {
 
-    const { data, error } = await supabase
-      .from("peticiones")
-      .select("*")
-      .order("created_at", { ascending: false })
+    const churchId =
+  await getCurrentChurchId()
+
+  const { data, error } =
+  await supabase
+
+    .from("peticiones")
+
+    .select("*")
+
+    .eq(
+      "church_id",
+      churchId
+    )
+
+    .order(
+      "created_at",
+      { ascending: false }
+    )
 
     if (error) {
 
@@ -104,10 +120,23 @@ export default function AdminDashboard() {
 
   async function marcarComoVisto(id) {
 
-    await supabase
-      .from("peticiones")
-      .update({ estado: "Visto" })
-      .eq("id", id)
+    const churchId =
+    await getCurrentChurchId()
+
+   await supabase
+
+  .from("peticiones")
+
+  .update({
+    estado: "Visto"
+  })
+
+  .eq("id", id)
+
+  .eq(
+    "church_id",
+    churchId
+  )
 
     fetchPeticiones()
 
@@ -121,10 +150,21 @@ export default function AdminDashboard() {
 
     if (!confirmar) return
 
-    await supabase
-      .from("peticiones")
-      .delete()
-      .eq("id", id)
+    const churchId =
+  await getCurrentChurchId()
+
+  await supabase
+
+  .from("peticiones")
+
+  .delete()
+
+  .eq("id", id)
+
+  .eq(
+    "church_id",
+    churchId
+  )
 
     fetchPeticiones()
 
@@ -153,10 +193,26 @@ export default function AdminDashboard() {
 
       )
 
-      await supabase
-        .from("peticiones")
-        .update({ estado: "Respondido" })
-        .eq("id", selectedPeticion.id)
+     const churchId =
+  await getCurrentChurchId()
+
+  await supabase
+
+  .from("peticiones")
+
+  .update({
+    estado: "Respondido"
+  })
+
+  .eq(
+    "id",
+    selectedPeticion.id
+  )
+
+  .eq(
+    "church_id",
+    churchId
+  )
 
       showToast( "Respuesta enviada exitosamente" )
 

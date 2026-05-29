@@ -3,6 +3,7 @@ import { motion} from "framer-motion"
 import { useEffect, useState } from "react"
 import { supabase } from "../lib/supabase"
 import PageWrapper from "../components/PageWrapper"
+import { getCurrentChurchId } from "../lib/getCurrentChurchId"
 
 export default function AdminHome() {
 
@@ -87,6 +88,9 @@ useState([])
 
   async function fetchStats() {
 
+    const churchId =
+    await getCurrentChurchId()
+
     // Flyers
 
     const {
@@ -97,6 +101,11 @@ useState([])
         count: "exact",
         head: true
       })
+
+      .eq(
+     "church_id",
+     churchId
+     )
 
     // Peticiones
 
@@ -109,6 +118,11 @@ useState([])
         head: true
       })
 
+      .eq(
+     "church_id",
+     churchId
+     )
+
     // Galería
 
     const {
@@ -120,6 +134,11 @@ useState([])
         head: true
       })
 
+      .eq(
+     "church_id",
+     churchId
+     )
+
     // Livestream
 
     const {
@@ -127,7 +146,16 @@ useState([])
     } = await supabase
       .from("livestream")
       .select("*")
-      .eq("is_live", true)
+
+     .eq(
+     "church_id",
+     churchId
+     )
+
+     .eq(
+     "is_live",
+     true
+     )
 
     setStats({
 
@@ -147,6 +175,11 @@ const {
   .from("peticiones")
 
   .select("*")
+
+  .eq(
+  "church_id",
+  churchId
+  )
 
   .order("created_at", {
     ascending: false
@@ -181,10 +214,17 @@ const {
 } = await supabase
 
   .from("flyers")
+.select("*")
 
-  .select("*")
+.eq(
+  "church_id",
+  churchId
+)
 
-  .eq("activo", true)
+.eq(
+  "activo",
+  true
+)
 
   .order("orden", {
     ascending: true
