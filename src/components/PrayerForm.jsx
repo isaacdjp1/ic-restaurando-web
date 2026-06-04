@@ -1,6 +1,7 @@
 import { useState } from "react"
 import emailjs from "@emailjs/browser"
 import { supabase } from "../lib/supabase"
+import { getPublicChurch } from "../lib/getPublicChurch"
 
 
 export default function PrayerForm() {
@@ -93,17 +94,38 @@ export default function PrayerForm() {
 
       // GUARDAR EN SUPABASE
 
+      const church =
+     await getPublicChurch()
+
+   if (!church) {
+
+  alert(
+    "No se encontró la iglesia."
+  )
+
+  setLoading(false)
+
+  return
+
+}
+
       const { error } = await supabase
      .from("peticiones")
      .insert(
     [
       {
-        nombre: formData.nombre,
-        email: formData.correo,
-        telefono: formData.telefono,
-        mensaje: formData.mensaje,
-        estado: "Pendiente",
-      },
+  church_id: church.id,
+
+  nombre: formData.nombre,
+
+  email: formData.correo,
+
+  telefono: formData.telefono,
+
+  mensaje: formData.mensaje,
+
+  estado: "Pendiente",
+},
     ],
     {
       returning: "minimal",
@@ -127,16 +149,24 @@ export default function PrayerForm() {
       // ENVIAR EMAIL
 
       await emailjs.send(
-        "service_g0m7var",
-        "template_t67hst9",
-        {
-          nombre: formData.nombre,
-          correo: formData.correo,
-          telefono: formData.telefono,
-          mensaje: formData.mensaje,
-        },
-        "2ybHwBiiCoPmaIxNe"
-      )
+
+  import.meta.env
+    .VITE_EMAILJS_SERVICE_ID,
+
+  import.meta.env
+    .VITE_EMAILJS_TEMPLATE_ID,
+
+  {
+    nombre: formData.nombre,
+    email: formData.correo,
+    telefono: formData.telefono,
+    mensaje: formData.mensaje,
+  },
+
+  import.meta.env
+    .VITE_EMAILJS_PUBLIC_KEY
+
+)
 
       setSuccess(true)
 

@@ -180,18 +180,22 @@ export default function AdminDashboard() {
 
       await emailjs.send(
 
-        "service_g0m7var",
-        "template_szyy6bn",
+  import.meta.env
+    .VITE_EMAILJS_SERVICE_ID,
 
-        {
-          to_email: selectedPeticion.email,
-          to_name: selectedPeticion.nombre,
-          message: respuesta
-        },
+  import.meta.env
+    .VITE_EMAILJS_REPLY_TEMPLATE,
 
-        "2ybHwBiiCoPmaIxNe"
+  {
+    to_email: selectedPeticion.email,
+    to_name: selectedPeticion.nombre,
+    message: respuesta
+  },
 
-      )
+  import.meta.env
+    .VITE_EMAILJS_PUBLIC_KEY
+
+)
 
      const churchId =
   await getCurrentChurchId()
