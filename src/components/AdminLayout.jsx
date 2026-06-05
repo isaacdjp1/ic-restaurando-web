@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { getCurrentChurchId } from "../lib/getCurrentChurchId"
 
 import {
   Link,
@@ -29,7 +30,46 @@ export default function AdminLayout({ children }) {
 
   const [mobileOpen, setMobileOpen] = useState(false)
 
+  const [churchName, setChurchName] = useState("")
+
   const sidebarOpen = true
+
+  useEffect(() => {
+
+  async function loadChurch() {
+
+    const churchId =
+      await getCurrentChurchId()
+
+    if (!churchId) return
+
+    const { data } =
+      await supabase
+
+        .from("churches")
+
+        .select("name")
+
+        .eq(
+          "id",
+          churchId
+        )
+
+        .single()
+
+    if (data) {
+
+      setChurchName(
+        data.name
+      )
+
+    }
+
+  }
+
+  loadChurch()
+
+}, [])
 
   const isDashboard = location.pathname === "/admin"
 
@@ -217,9 +257,8 @@ export default function AdminLayout({ children }) {
              leading-tight
              text-[#111111]
     ">
-              Restaurando
-              <br />
-              El Altar
+              {churchName}
+              
             </h1>
 
           </div>
