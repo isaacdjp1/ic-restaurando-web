@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+.template2 {
+
+  --primary: #111111;
+
+  --secondary: #666666;
+
+  --accent: #b8945f;
+
+  background: #ffffff;
+
+  color: #111111;
+
+  font-family: 'Manrope', sans-serif;
+
+}
+
+.template2 h1,
+.template2 h2,
+.template2 h3 {
+
+  font-family: 'Instrument Serif', serif;
+
+  letter-spacing: -0.03em;
+
+}
+
+.template2 section {
+
+  position: relative;
+
+}
+
+.template2 img {
+
+  border-radius: 24px;
+
+}
+
+.template2 button {
+
+  transition: all 0.3s ease;
+
+}
+
+.template2 button:hover {
+
+  transform: translateY(-2px);
+
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+.template2 {
+  background: #ffffff;
+  color: #111111;
+  font-family: "Manrope", sans-serif;
+}
+
+.template2 * {
+  box-sizing: border-box;
+}
+
+.template2 a {
+  text-decoration: none;
+}
+
+.template2 h1,
+.template2 h2,
+.template2 h3 {
+  font-family: "Instrument Serif", serif;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+}

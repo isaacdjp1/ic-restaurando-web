@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+.template3 {
+  --bg: #0F172A;
+  --primary: #2563EB;
+  --secondary: #7C3AED;
+  --white: #FFFFFF;
+
+  background: #0F172A;
+  color: white;
+
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.template3 h1,
+.template3 h2,
+.template3 h3,
+.template3 h4 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.template3 section {
+  position: relative;
+}
+
+.template3 ::selection {
+  background: #2563EB;
+  color: white;
+}

@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+.template4 {
+
+  --primary: #111111;
+
+  --secondary: #6B7280;
+
+  --accent: #C8A96B;
+
+  background: #ffffff;
+
+  color: #111111;
+
+  font-family: 'Inter', sans-serif;
+
+}
+
+.template4 h1,
+.template4 h2,
+.template4 h3,
+.template4 h4 {
+
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+.template4 section {
+
+  position: relative;
+
+}
+
+.template4 img {
+
+  border-radius: 20px;
+
+}
+
+.template4 button {
+
+  transition: all 0.3s ease;
+
+}
+
+.template4 button:hover {
+
+  transform: translateY(-2px);
+
+}

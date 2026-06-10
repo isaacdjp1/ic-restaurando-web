@@ -1,4 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom"
+import Template2 from "./templates/template2/Template2"
+import Template3 from "./templates/Template3/Template3"
+import Template4 from "./templates/Template4/Template4"
 
 import Home from "./pages/Home"
 import Login from "./pages/Login"
@@ -27,6 +30,22 @@ export default function App() {
   return (
 
     <Routes>
+
+      //Templates
+      <Route
+      path="/template2"
+     element={<Template2 />}
+     />
+
+     <Route
+      path="/template3"
+     element={<Template3 />}
+     />
+
+     <Route
+      path="/template4"
+     element={<Template4 />}
+     />
 
       <Route
       path="/login"
